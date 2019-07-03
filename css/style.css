@@ -743,6 +743,7 @@ header label {
 .post-content {
   padding-top: 2rem;
   padding-right: 2rem;
+  padding-bottom: 2rem;
   text-align: justify;
 }
 .post-content h2,
