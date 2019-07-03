@@ -235,7 +235,7 @@ a:hover {
 }
 .container {
   padding-left: 1em;
-  padding-right: 1em;
+  padding-right: 8em;
 }
 .footer {
   height: 4rem;
@@ -458,7 +458,7 @@ input[type="radio"]:not(:checked) + label:after {
 
 
 .header-logo a {
-  padding: 0;
+  padding: 10px;
 }
 .navbar .menu a {
   padding: 0 8px;
@@ -742,6 +742,7 @@ header label {
 }
 .post-content {
   padding-top: 2rem;
+  padding-right: 2rem;
   text-align: justify;
 }
 .post-content h2,
@@ -1029,16 +1030,14 @@ header label {
 .post-toc {
   position: fixed;
   top: 10em;
-  right: 2em;
-  width: 15rem;
-  max-height: 30em;
-  padding: 1rem;
+  right: 2.5em;
+  width: 10rem;
+  padding: 0.8rem;
   border-radius: 5px;
   background: #fff;
-  box-shadow: 1px 1px 2px rgba(0,0,0,0.125);
-  word-wrap: break-word;
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.125);
+  overflow: auto;
   box-sizing: border-box;
-  overflow-x: auto;
   text-align: center;
 }
 .dark-theme .post-toc {
@@ -1059,7 +1058,6 @@ header label {
   font-weight: 400;
   text-transform: uppercase;
   text-align: center;
-  width: 100%;
 }
 .post-toc .post-toc-content {
   text-align: left;
@@ -1069,12 +1067,12 @@ header label {
 .post-toc .post-toc-content .toc,
 .post-toc .post-toc-content .toc-child {
   list-style: none;
-  padding-left: 20px;
+  padding-left: 10px;
   line-height: 1.5em;
 }
 .post-toc .post-toc-content .toc .toc-child,
 .post-toc .post-toc-content .toc-child .toc-child {
-  padding-left: 15px;
+  padding-left: 10px;
 }
 .post-toc .post-toc-content .toc-link.active {
   color: $theme-color;
