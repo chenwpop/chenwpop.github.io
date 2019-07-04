@@ -460,12 +460,18 @@ input[type="radio"]:not(:checked) + label:after {
 .header-logo a {
   padding: 10px;
 }
+.navbar {
+  background-color: #e8e8e8;
+}
+.dark-theme .navbar {
+  background-color: #292a2d;
+}
 .navbar .menu a {
   padding: 0 8px;
 }
 .navbar .menu .active {
   font-weight: 900;
-  color: #161209;
+  color: #000;
 }
 .dark-theme .navbar .menu .active {
   color: #fff;
