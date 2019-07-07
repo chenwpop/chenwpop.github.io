@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en, ch">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="description" content="Welcome to my blog, pull up a chair by the hearth!">
+
+
+    <meta name="keywords" content="Java, Algorithms, Pusheen, movies & TV shows">
+
+
+<title>Learn Java Essentials from One Class | Ark Pusheen</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/"><b>Ark Pusheen</b></a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" hidden class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ark Pusheen</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+
+        <div class="main">
+            <div class="container">
+  
+  
+    <div id="post-toc" class="post-toc">
+      <span class="post-toc-title">catalogue</span>
+      <div class="post-toc-content">
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#the-Sample-Class"><span class="toc-text">the Sample Class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Package-Statement"><span class="toc-text">[1] Package Statement</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-Import-Statements"><span class="toc-text">[2] Import Statements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-Class-Declaration"><span class="toc-text">[3] Class Declaration</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Access-Control"><span class="toc-text">[4] Access Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Constructor"><span class="toc-text">[5] Constructor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Getter-and-Setter"><span class="toc-text">[6] Getter and Setter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Equality-Test"><span class="toc-text">[7] Equality Test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-Documentation"><span class="toc-text">[8] Documentation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-toString-Method"><span class="toc-text">[9] toString() Method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-Static-Inner-Class"><span class="toc-text">[10] Static Inner Class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-Exceptions"><span class="toc-text">[11] Exceptions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#12-Iterator"><span class="toc-text">[12] Iterator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#13-Inner-Class"><span class="toc-text">[13] Inner Class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#14-Command-Line-Arguments"><span class="toc-text">[14] Command Line Arguments</span></a></li></ol>
+      </div>
+    </div>
+    
+    
+    <article class="post-wrap">
+      <header class="post-header">
+        <h1 class="post-title">Learn Java Essentials from One Class</h1>
+          
+            <div class="post-meta">
+              
+                    Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
+              
+
+              
+                <span class="post-time">
+                  Date: <a href="#">Jul 06, 2019&nbsp;&nbsp;15:30:42</a>
+                </span>
+              
+              
+                <span class="post-category">
+                Category:
+                  
+                    <a href="/categories/Java/">Java</a>
+                  
+                </span>
+              
+            </div>
+          
+      </header>
+      <section class="post-content">
+        <p>To understand this blog, you have to be familiar with some basic programming concepts, such as variables, constants, operators, control flow, etc. This blog mainly comes from my notes of the brilliant Core Java series <a href="http://horstmann.com/corejava/index.html" target="_blank" rel="noopener">Core Java by Cay S. Horstmann and Gray Cornell</a>. If you need thorough and systematic learning of Java, I recommend you to read those books, at least <em>Volume I, Fundamentals</em>. Apparently, I’m not a Java expert, and I make easy mistakes, besides, I’m not a native speaker, so some of my statement may be buggy. Sincerely, any comments and advice are highly welcome.</p>
+<h3 id="the-Sample-Class"><a href="#the-Sample-Class" class="headerlink" title="the Sample Class"></a>the Sample Class</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [1] Package Statement</span></span><br><span class="line"><span class="keyword">package</span> edu.princeton.cs.algs4;</span><br><span class="line"></span><br><span class="line"><span class="comment">// [2] Import Statements</span></span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.NoSuchElementException;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.util.System.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">// [3] Class Declaration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">Item</span>&gt; <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [4] Access Control</span></span><br><span class="line">    <span class="keyword">private</span> Node&lt;Item&gt; first;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [5] Constructor</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        first = <span class="keyword">null</span>;</span><br><span class="line">        n = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">(Item item)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>();</span><br><span class="line">      <span class="keyword">this</span>.push(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [6] Getter and Setter</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [7] Equality Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first == <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [8] Documentation</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Removes and returns the item most recently added to this stack.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> the item most recently added</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> NoSuchElementException if this stack is empty</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException(<span class="string">"Stack underflow"</span>);</span><br><span class="line">        Item item = first.item;        <span class="comment">// save item to return</span></span><br><span class="line">        first = first.next;            <span class="comment">// delete first node</span></span><br><span class="line">        n--;</span><br><span class="line">        <span class="keyword">return</span> item;                   <span class="comment">// return the saved item</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [9] toString() Method</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (Item item : <span class="keyword">this</span>) &#123;</span><br><span class="line">            s.append(item + <span class="string">' '</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [10] Static Inner Class</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Item item;</span><br><span class="line">        <span class="keyword">private</span> Node&lt;Item&gt; next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [11] Exceptions</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException(<span class="string">"Stack underflow"</span>);</span><br><span class="line">        <span class="keyword">return</span> first.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [12] iterator</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;Item&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ListIterator(first);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [13] inner class</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ListIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Node&lt;Item&gt; current;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ListIterator</span><span class="params">(Node&lt;Item&gt; first)</span> </span>&#123;</span><br><span class="line">            current = first;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> current != <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Item <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!hasNext()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">            Item item = current.item;</span><br><span class="line">            current = current.next;</span><br><span class="line">            <span class="keyword">return</span> item;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item item)</span> </span>&#123;</span><br><span class="line">        Node&lt;Item&gt; oldfirst = first;</span><br><span class="line">        first = <span class="keyword">new</span> Node&lt;Item&gt;();</span><br><span class="line">        first.item = item;</span><br><span class="line">        first.next = oldfirst;</span><br><span class="line">        n++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [14] command line arguments, a variable number of arguments</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;String&gt;();</span><br><span class="line">        <span class="keyword">while</span> (!StdIn.isEmpty()) &#123;</span><br><span class="line">            String item = StdIn.readString();</span><br><span class="line">            <span class="keyword">if</span> (!item.equals(<span class="string">"-"</span>))</span><br><span class="line">                stack.push(item);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (!stack.isEmpty())</span><br><span class="line">                out.print(stack.pop() + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        out.printf(<span class="string">"("</span> + stack.size() + <span class="string">" left on stack)"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The above code snippets are based on the JAR of <a href="https://algs4.cs.princeton.edu/13stacks/Stack.java.html" target="_blank" rel="noopener">algs4</a>, developed by CS department in the Princeton University. I remove some content to make it more handleable.</p>
+<h3 id="1-Package-Statement"><a href="#1-Package-Statement" class="headerlink" title="[1] Package Statement"></a>[1] Package Statement</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> edu.princeton.cs.algs4;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Put the line <code>package [package name]</code> at the beginning of your file (below <a href="https://en.wikipedia.org/wiki/Shebang" target="_blank" rel="noopener">shebang</a>). This command declares this class belongs to which package.</li>
+<li>Package is commonly named with the reverse order of a public domain, so they won’t collide with others.</li>
+<li>Package name also decides the directory structure of your project. See another blog <a href="http://www.arkpusheen.com/2019/07/05/Maven-Tutorial/#Learn-Maven-in-5-Minutes" target="_blank" rel="noopener">Maven Tutorial #groupID</a> for more details.</li>
+</ul>
+<h3 id="2-Import-Statements"><a href="#2-Import-Statements" class="headerlink" title="[2] Import Statements"></a>[2] Import Statements</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.NoSuchElementException;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.util.System.*;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Put the import statements right below your package statement.</li>
+<li>Each of them imports one external class to your current class. You can access all of their public features (that is to say, fields and methods).</li>
+<li>Import static features with the code <code>import static [package name.ClassName.featureName or *];</code>, so you can use the function without the prefix. Another common example <code>import static java.lang.Math.*;</code>.</li>
+</ul>
+<h3 id="3-Class-Declaration"><a href="#3-Class-Declaration" class="headerlink" title="[3] Class Declaration"></a>[3] Class Declaration</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">Item</span>&gt; <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>public</code>: One source file (<code>.java</code> file) can only have one public class. The reason is, Java Virtual Machine (JVM) relies on the binary file (‘.class’ file, generated from <code>.java</code> file the with same name) name to locate a class. If you put more than one public class inside a source file, JVM will mess up them.</li>
+<li><code>Stack&lt;Item&gt;</code>: The class name. A class name always starts with an upper case word and follows the CamelRule. The diamond <code>&lt;&gt;</code> represents another heavy topic in Java, <strong>Generics</strong>, which I will talk about it later in another blog. In this blog, I will simply strip the generics to make things easy.</li>
+<li><code>implements</code>: This keyword means <code>Iterable</code> is an interface. Declare an interface with <code>public interface Iterable</code>. Although an interface looks like a class, it’s rather a series of requirements for the class that intends to implement it. All methods in an interface are automatically public and all fields must be <code>public</code>, <code>static</code>, <code>final</code>, as an interface cannot have instance fields. One class can implement many interfaces, and it has to develop all interface methods or declare them to be abstract. An interface cannot be initialized, that is to say, you cannot <code>new</code> an instance of it.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoClass</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">abstract</span> <span class="title">demoMethod</span><span class="params">(String args[])</span></span>;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Abstract class</strong>: If a class leave a part of method implementations empty, this class is an abstract class. More specifically, an abstract class implements part of its methods while leaving the others empty (those are so-called abstract method). This differentiates it from an interface. However, similar to an interface, an abstract class cannot be initialized. As you can see from the above code snippets, an abstract method must be specified with an <code>abstract</code> keyword. If you inherit an abstract class, you need to implement the abstract methods in it. If all of them are implemented, the subclass is no longer abstract, otherwise, it’s still abstract and the keyword <code>abstract</code> in the class declaration is still necessary.</li>
+<li><code>extends</code> is another common keyword you can find in the class declaration, it states an inheritance relationship between two classes. If <code>public class A extends B</code>, then <code>A</code> inherits all public features from <code>B</code>. <code>A</code> is called the subclass of <code>B</code>, and on the contrary, <code>B</code> is the superclass of <code>A</code>. One class can only have one superclass, in order to avoid <a href="https://en.wikipedia.org/wiki/Multiple_inheritance#The_diamond_problem" target="_blank" rel="noopener">the diamond problem</a>. In <code>A</code>‘s body, <code>super</code> refers to its superclass, so you can call <code>B</code>‘s constructor with <code>super()</code> in <code>A</code>‘s constructor to quickly initialize some fields. Btw, <code>this</code> refers to the class itself in any class’s body. <code>A</code> could reimplement some methods in <code>B</code>, this is called <code>override</code>.</li>
+</ul>
+<h3 id="4-Access-Control"><a href="#4-Access-Control" class="headerlink" title="[4] Access Control"></a>[4] Access Control</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> Node&lt;Item&gt; first;</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> n;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>public</code>: open to everything.</li>
+<li><code>private</code>: open to everything inside its class. An instance has access to private features of other instances of the same class.</li>
+<li>blank: open to everything inside its package.</li>
+<li><code>protected</code>: open to everything inside its class and all subclasses, including ones from other packages. Declare a feature as protected breaks the safe encapsulation, which is un-recommended.</li>
+<li><code>static</code> and <code>final</code>: These two keywords are not in the scope of access control, but they usually come with those access control keywords, so I talk about them in this section. <code>static</code> declares a class feature, it means this feature is accessible even without an instance. So a static method can only accept static fields as arguments. Call a static feature by <code>ClassName.featureName</code>, instead of the common way <code>instanceName.featureName</code>. A class only have one copy of their static features in memory, and all instances share them. We will talk about static class later. Applying <code>final</code> to a field denotes a constant field. If it refers to a primitive type (they are <code>boolean</code>, <code>byte</code>, <code>short</code>, <code>char</code>, <code>int</code>, <code>long</code>, <code>float</code>, <code>double</code> in Java), it means the value of this field can not be changed. If it’s an Object, the value of this Object is still changeable, but you can not make this field refer to another thing. In short, the assignment statement is prohibited for a final field.  A final class can not be inherited, and a final method can not be overridden. You can use the combo of them <code>static final</code> as a prefix.</li>
+</ul>
+<h3 id="5-Constructor"><a href="#5-Constructor" class="headerlink" title="[5] Constructor"></a>[5] Constructor</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    first = <span class="keyword">null</span>;</span><br><span class="line">    n = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">(Item item)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>();</span><br><span class="line">  <span class="keyword">this</span>.push(item);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Unlike a method, a constructor doesn’t have a return type.</li>
+<li>The <code>Stack()</code> is called default constructor, even if you leave it blank, JVM still assign all uninitialized fields with their default values, 0 for primitive numbers and char, false for boolean, null for Objects.</li>
+<li>The <code>Stack(Item)</code> is a parameterized constructor.</li>
+<li>You can use any other constructors, such as <code>this()</code> or <code>super()</code>, inside a constructor. First of all, make sure such a constructor exists. Also, put any <code>super()</code> constructors before the <code>this()</code> ones.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Item&gt; demoList = <span class="keyword">new</span> ArrayList&lt;&gt;() &#123;</span><br><span class="line">  &#123;</span><br><span class="line">    add(item1); add(item2); add(<span class="keyword">new</span> Item());</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Initialization Blocks</strong>: You can put common initialization code inside a brace <code>{}</code>, between class fields declaration and constructor. The above code initializes the <code>demoList</code> with an initialization block of an anonymous inner class. You can also do it with,</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;Item&gt; demoList = <span class="keyword">new</span> ArrayList&lt;&gt;(List.of(item1, item2, <span class="keyword">new</span> Item()));</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-Getter-and-Setter"><a href="#6-Getter-and-Setter" class="headerlink" title="[6] Getter and Setter"></a>[6] Getter and Setter</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Usually, we set all class fields as private, to avoid accidentally change and malicious access from other classes. Sometimes, it’s necessary to change or get a field from outside, so Java designs <code>setter</code> and <code>getter</code>. The <code>size()</code> function in this class is a getter. Sometimes we name them with the field name, e.g. <code>setN()</code> and <code>getN()</code>.</p>
+<h3 id="7-Equality-Test"><a href="#7-Equality-Test" class="headerlink" title="[7] Equality Test"></a>[7] Equality Test</h3><ul>
+<li>In total, there are 2 kinds of equality test, identity-oriented (with calling <code>equals()</code> method) and value-oriented (with equal sign <code>==</code>). The former one tests whether 2 variables occupy the same memory address, while the later one focuses on comparing their value.</li>
+<li><strong>Primitive types</strong>: all primitive types are value-oriented compared. Be careful about equality between double types, sometimes the precision difference caused by hardware limitation results in an invalid program.</li>
+<li><strong>String</strong>: all String are immutable Objects in Java, it means we can not change the content of a String once it’s created. Treat each string as an object, use <code>==</code> to test the memory address equality, and use <code>equals()</code> for content equality test.</li>
+</ul>
+<h3 id="8-Documentation"><a href="#8-Documentation" class="headerlink" title="[8] Documentation"></a>[8] Documentation</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Removes and returns the item most recently added to this stack.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the item most recently added</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NoSuchElementException if this stack is empty</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Item <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (isEmpty()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException(<span class="string">"Stack underflow"</span>);</span><br><span class="line">    Item item = first.item;        <span class="comment">// save item to return</span></span><br><span class="line">    first = first.next;            <span class="comment">// delete first node</span></span><br><span class="line">    n--;</span><br><span class="line">    <span class="keyword">return</span> item;                   <span class="comment">// return the saved item</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Documentation is extremely crucial to code management, inheritance and update. You can use an inline documentation (<code>//</code> follows documentation content) to explain simple points, while use a block documentation (as showed in the above code snippets) to illustrate a class, a method, or any other obscure points.<br>Roughly speaking, there are 3 kinds of documentation,</p>
+<ol>
+<li><p><strong>Class Documentation</strong>: usually comes as a block documentation, right above the class to be explained. State the authorities, objectives and functionality of this class briefly.</p>
+</li>
+<li><p><strong>Method Documentation</strong>: block documentation as well. Below is the structure of a method documentation.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * [Description of method functionality, logic, etc.]</span><br><span class="line"> * @param [parameter name] [parameter description]</span><br><span class="line"> * @param [another parameter name] [another parameter description]</span><br><span class="line"> * @return [description for returned objects, omit given void return]</span><br><span class="line"> * @throws [Exception name] [condition that triggers exception]</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>Class Field Documentation or Code Block Documentation</strong>: explain the function of a class field, or the logic of a code block with inline documentation, in a pithy style.</p>
+</li>
+</ol>
+<p>Java documentation supports a variant of tags and html style. Besides what you have seen before,</p>
+<ul>
+<li>@author [author name]</li>
+<li>{@code [code snippets]}</li>
+<li><i>italic</i>, <em>emphasis</em>, <a href="hyperlink">, etc.</a></li>
+</ul>
+<h3 id="9-toString-Method"><a href="#9-toString-Method" class="headerlink" title="[9] toString() Method"></a>[9] toString() Method</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">    <span class="keyword">for</span> (Item item : <span class="keyword">this</span>) &#123;</span><br><span class="line">        s.append(item + <span class="string">' '</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> s.toString();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>A class implement the <code>toString()</code> method is printable. In the code <code>System.out.print(objectName)</code>, the JVM will automatically call the <code>objectName.toString()</code> method of this object, and replace the <code>objectName</code> with the return value of <code>objectName.toString()</code>. So this method should return a String contains essential values in this Object. Actually, all class should implement this method for convenient debug.</p>
+<h3 id="10-Static-Inner-Class"><a href="#10-Static-Inner-Class" class="headerlink" title="[10] Static Inner Class"></a>[10] Static Inner Class</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Item item;</span><br><span class="line">    <span class="keyword">private</span> Node&lt;Item&gt; next;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Sometimes we need to hide one class inside another to either avoid name collision or benefits package management. <strong>Static inner class</strong>, or <strong>nested class</strong> comes into being under such requirement.</p>
+<ul>
+<li>Only inner class can be declared as static.</li>
+<li>Declare a static inner class as <code>public</code>, <code>private</code>, <code>protected</code>, or leave it blank, then you can call it through <code>OuterClassName.InnerClassName</code> under the access rule defined by the keyword.</li>
+<li>Static inner class act exactly like a top-level class, so it’s not a member of the outer class. For example, static inner class can have static features. Also, it has no privilege about accessing to outer class’s feature.</li>
+<li>An interface’s inner class are automatically <code>static</code> and <code>public</code>.</li>
+</ul>
+<h3 id="11-Exceptions"><a href="#11-Exceptions" class="headerlink" title="[11] Exceptions"></a>[11] Exceptions</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Item <span class="title">peek</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (isEmpty()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException(<span class="string">"Stack underflow"</span>);</span><br><span class="line">    <span class="keyword">return</span> first.item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="12-Iterator"><a href="#12-Iterator" class="headerlink" title="[12] Iterator"></a>[12] Iterator</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Iterator&lt;Item&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> ListIterator(first);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="13-Inner-Class"><a href="#13-Inner-Class" class="headerlink" title="[13] Inner Class"></a>[13] Inner Class</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ListIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Node&lt;Item&gt; current;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ListIterator</span><span class="params">(Node&lt;Item&gt; first)</span> </span>&#123;</span><br><span class="line">        current = first;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> current != <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!hasNext()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">        Item item = current.item;</span><br><span class="line">        current = current.next;</span><br><span class="line">        <span class="keyword">return</span> item;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item item)</span> </span>&#123;</span><br><span class="line">    Node&lt;Item&gt; oldfirst = first;</span><br><span class="line">    first = <span class="keyword">new</span> Node&lt;Item&gt;();</span><br><span class="line">    first.item = item;</span><br><span class="line">    first.next = oldfirst;</span><br><span class="line">    n++;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="14-Command-Line-Arguments"><a href="#14-Command-Line-Arguments" class="headerlink" title="[14] Command Line Arguments"></a>[14] Command Line Arguments</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">    Stack&lt;String&gt; stack = <span class="keyword">new</span> Stack&lt;String&gt;();</span><br><span class="line">    <span class="keyword">while</span> (!StdIn.isEmpty()) &#123;</span><br><span class="line">        String item = StdIn.readString();</span><br><span class="line">        <span class="keyword">if</span> (!item.equals(<span class="string">"-"</span>))</span><br><span class="line">            stack.push(item);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (!stack.isEmpty())</span><br><span class="line">            out.print(stack.pop() + <span class="string">" "</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    out.printf(<span class="string">"("</span> + stack.size() + <span class="string">" left on stack)"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>The main method in a Java class</p>
+
+      </section>
+      <div id="disqus_thread"></div>
+        <script>
+        /**
+        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+        var disqus_config = function () {
+        //this.page.url = chenwpop.github.io;  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = ARK_PUSHEEN; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+        (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        s.src = 'https://arkpusheen.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+        })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        
+          <section class="post-copyright">
+              
+                  <p class="copyright-item">
+                      <span>Author:</span>
+                      <span>Chen Wahng</span>
+                  </p>
+              
+              
+              
+                  <p class="copyright-item">
+                      <span>License:</span>
+                      <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                  </p>
+              
+              
+                   <p class="copyright-item">
+                       <span>Slogan:</span>
+                       <span>A million foe won't bend my will.</span>
+                   </p>
+              
+
+          </section>
+      
+      <section class="post-tags">
+          <div>
+              <span>Tag(s):</span>
+              <span class="tag">
+                  
+                  
+                      <a href="/tags/access-control/"># access control</a>
+                  
+                      <a href="/tags/documentation/"># documentation</a>
+                  
+                      <a href="/tags/inner-class/"># inner class</a>
+                  
+                      <a href="/tags/java-basics/"># java basics</a>
+                  
+                      
+              </span>
+          </div>
+          <div>
+              <a href="javascript:window.history.back();">back</a>
+              <span>· </span>
+              <a href="/">home</a>
+          </div>
+      </section>
+      <section class="post-nav">
+          
+          
+          <a class="next" rel="next" href="/2019/07/06/Tips-about-Landing-a-Job/">Tips about Landing a Job</a>
+          
+      </section>
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+    </div>
+</body>
+</html>
