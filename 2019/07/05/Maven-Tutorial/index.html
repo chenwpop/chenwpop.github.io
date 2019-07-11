@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en, ch">
+<html lang="en">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -31,6 +31,15 @@
     
     <script src="/js/script.js"></script>
     
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
 
 
 </head>
@@ -39,7 +48,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/"><b>Ark Pusheen</b></a></div>
+            <div class="navbar-header header-logo"><a href="/">Ark Pusheen</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -50,7 +59,7 @@
                 
                     <a class="menu-item" href="/about">About</a>
                 
-                <input id="switch_default" type="checkbox" hidden class="switch_default">
+                <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
 
@@ -94,46 +103,102 @@
         }
     }
 </script>
-
         <div class="main">
             <div class="container">
-  
-  
-    <div id="post-toc" class="post-toc">
-      <span class="post-toc-title">catalogue</span>
-      <div class="post-toc-content">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Introduction"><span class="toc-text">Introduction</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Objectives"><span class="toc-text">Objectives</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#providing-a-uniform-build-system"><span class="toc-text">providing a uniform build system</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#providing-quality-project-information"><span class="toc-text">providing quality project information</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#providing-guideline-for-best-practices-development"><span class="toc-text">providing guideline for best practices development</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Learn-Maven-in-5-Minutes"><span class="toc-text">Learn Maven in 5 Minutes</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Structure-of-a-Maven-project"><span class="toc-text">Structure of a Maven project</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pom-xml-Essentials"><span class="toc-text">pom.xml Essentials</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Build-the-package"><span class="toc-text">Build the package</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Customize-pom-xml"><span class="toc-text">Customize pom.xml</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-Plugins"><span class="toc-text">Add Plugins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-resources"><span class="toc-text">Add resources</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-dependencies"><span class="toc-text">Add dependencies</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Add-properties"><span class="toc-text">Add properties</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Structure-of-pom-xml"><span class="toc-text">Structure of pom.xml</span></a></li></ol></li></ol>
-      </div>
-    </div>
     
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
     
     <article class="post-wrap">
-      <header class="post-header">
-        <h1 class="post-title">Maven Tutorial</h1>
-          
-            <div class="post-meta">
-              
-                    Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
-              
+        <header class="post-header">
+            <h1 class="post-title">Maven Tutorial</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
+                    
 
-              
-                <span class="post-time">
-                  Date: <a href="#">Jul 05, 2019&nbsp;&nbsp;19:53:15</a>
-                </span>
-              
-              
-                <span class="post-category">
-                Category:
-                  
-                    <a href="/categories/Java/">Java</a>
-                  
-                </span>
-              
-            </div>
-          
-      </header>
-      <section class="post-content">
-        <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Maven, a Yaddish word meaning accumulator of knowledge. It’s a Java project management and build tool, which defines a clear statement of what a project consists of, provides an easy way to publish project information and share packages across multiple projects.</p>
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jul 5, 2019&nbsp;&nbsp;19:53:15</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Java/">Java</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>Maven, a Yaddish word meaning accumulator of knowledge. It’s a Java project management and build tool, which defines a clear statement of what a project consists of, provides an easy way to publish project information and share packages across multiple projects.</p>
 <h2 id="Objectives"><a href="#Objectives" class="headerlink" title="Objectives"></a>Objectives</h2><h3 id="providing-a-uniform-build-system"><a href="#providing-a-uniform-build-system" class="headerlink" title="providing a uniform build system"></a>providing a uniform build system</h3><p>Maven allows a project to build using its <strong>project object model (POM)</strong> and a set of plugins that are shared by all projects using Maven, provide a uniform build system. Once you know how to build one Maven project, you automatically know how all other Maven projects build, consequently, saving you an immense amount of time when trying to navigate other projects.</p>
 <h3 id="providing-quality-project-information"><a href="#providing-quality-project-information" class="headerlink" title="providing quality project information"></a>providing quality project information</h3><p>Maven provides plenty of project information, that is in part taken from your POM and in part generated from your project’s source files. For example, maven can provide,</p>
 <ul>
@@ -206,84 +271,71 @@
 
 <p>You can also add filtering tags to limit the phases of the validity of resources, or add <code>distributionManagement</code> tag to deploy your project to the remote repository. These contents are skipped over in this warmup tutorial.</p>
 
-      </section>
-      <div id="disqus_thread"></div>
-        <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        var disqus_config = function () {
-        //this.page.url = chenwpop.github.io;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = ARK_PUSHEEN; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://arkpusheen.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        
-          <section class="post-copyright">
-              
-                  <p class="copyright-item">
-                      <span>Author:</span>
-                      <span>Chen Wahng</span>
-                  </p>
-              
-              
-              
-                  <p class="copyright-item">
-                      <span>License:</span>
-                      <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
-                  </p>
-              
-              
-                   <p class="copyright-item">
-                       <span>Slogan:</span>
-                       <span>A million foe won't bend my will.</span>
-                   </p>
-              
+        </div>
 
-          </section>
-      
-      <section class="post-tags">
-          <div>
-              <span>Tag(s):</span>
-              <span class="tag">
-                  
-                  
-                      <a href="/tags/Maven/"># Maven</a>
-                  
-                      <a href="/tags/Tutorial/"># Tutorial</a>
-                  
-                      
-              </span>
-          </div>
-          <div>
-              <a href="javascript:window.history.back();">back</a>
-              <span>· </span>
-              <a href="/">home</a>
-          </div>
-      </section>
-      <section class="post-nav">
-          
-              <a class="prev" rel="prev" href="/2019/07/06/Learn-Java-Essentials-from-One-Class/">Learn Java Essentials from One Class</a>
-          
-          
-          <a class="next" rel="next" href="/2019/04/06/Tips-about-Landing-a-Job/">Tips about Landing a Job</a>
-          
-      </section>
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Wahng</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>A million foe won't bend my will.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Maven/"># Maven</a>
+                    
+                        <a href="/tags/Tutorial/"># Tutorial</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/07/06/Learn-Java-Essentials-from-One-Class/">Learn Java Essentials from One Class</a>
+            
+            
+            <a class="next" rel="next" href="/2019/04/06/Tips-about-Landing-a-Job/">Tips about Landing a Job</a>
+            
+        </section>
+
+
     </article>
 </div>
 
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
+
     </div>
 </body>
 </html>

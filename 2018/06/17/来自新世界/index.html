@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en, ch">
+<html lang="en">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -31,6 +31,15 @@
     
     <script src="/js/script.js"></script>
     
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
 
 
 </head>
@@ -39,7 +48,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/"><b>Ark Pusheen</b></a></div>
+            <div class="navbar-header header-logo"><a href="/">Ark Pusheen</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -50,7 +59,7 @@
                 
                     <a class="menu-item" href="/about">About</a>
                 
-                <input id="switch_default" type="checkbox" hidden class="switch_default">
+                <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
 
@@ -94,46 +103,102 @@
         }
     }
 </script>
-
         <div class="main">
             <div class="container">
-  
-  
-    <div id="post-toc" class="post-toc">
-      <span class="post-toc-title">catalogue</span>
-      <div class="post-toc-content">
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#现在的世界"><span class="toc-text">现在的世界</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#我们是人类啊"><span class="toc-text">我们是人类啊</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#奇狼丸"><span class="toc-text">奇狼丸</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#不存在的新世界"><span class="toc-text">不存在的新世界</span></a></li></ol>
-      </div>
-    </div>
     
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
     
     <article class="post-wrap">
-      <header class="post-header">
-        <h1 class="post-title">来自新世界</h1>
-          
-            <div class="post-meta">
-              
-                    Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
-              
+        <header class="post-header">
+            <h1 class="post-title">来自新世界</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
+                    
 
-              
-                <span class="post-time">
-                  Date: <a href="#">Jun 17, 2018&nbsp;&nbsp;14:48:00</a>
-                </span>
-              
-              
-                <span class="post-category">
-                Category:
-                  
-                    <a href="/categories/Anime/">Anime</a>
-                  
-                </span>
-              
-            </div>
-          
-      </header>
-      <section class="post-content">
-        <p>最近刚补完这部口碑极好的作品，想把现在的自己的想法记录下来，因为我相信，五年之前的自己看这部作品，会有完全不同的看法。可能五年之后再回头看，还会有其他体会。</p>
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jun 17, 2018&nbsp;&nbsp;14:48:00</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Anime/">Anime</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>最近刚补完这部口碑极好的作品，想把现在的自己的想法记录下来，因为我相信，五年之前的自己看这部作品，会有完全不同的看法。可能五年之后再回头看，还会有其他体会。</p>
 <img src="/images/来自新世界1.png" width="400">
 
 <h3 id="现在的世界"><a href="#现在的世界" class="headerlink" title="现在的世界"></a>现在的世界</h3><p>最初的几集为主角们现在所生活的地方做了较全面的描述。这是一个和寒蝉鸣泣之地，雏见泽一样封闭的小城镇，主角们小时候，不论是教育，还是娱乐，日常生活，基本都局限在这小片区域内。不同的是，这里的成年人类拥有一种特殊的能力，叫做咒力，可以理解为强大的战斗力。而幼年人类是没有这种能力的，需经由先天因素或者学习获得。获得咒力的孩子们就完成了成人礼，可以去到更高等的教育机构学习，教育的内容之一是咒力的提升与应用，此外则是繁琐的近乎洗脑的礼德教育，主角们被灌输着各种规则: 咒力不能对人类使用、远离奴隶种族化鼠、不要接近城镇远处的森林、业魔会自己结束生命，而恶鬼是最可怕的敌人等等，却没有被告知原因。</p>
@@ -168,84 +233,71 @@
 <p>早季曾经有一个姐姐，她也被早季的父母深爱着，但由于某种原因，姐姐被不净猫抹杀了。早季的爸爸妈妈作为教育委员会的一员，掌握着孩子们的生杀权利，当自己的女儿成为整个村镇的潜在威胁时，他们还是接受了命运的安排。或许教育委员会的所有人，在年少的时候，都曾经是“早季”。</p>
 <p>写于06/17/2018</p>
 
-      </section>
-      <div id="disqus_thread"></div>
-        <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        var disqus_config = function () {
-        //this.page.url = chenwpop.github.io;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = ARK_PUSHEEN; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://arkpusheen.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        
-          <section class="post-copyright">
-              
-                  <p class="copyright-item">
-                      <span>Author:</span>
-                      <span>Chen Wahng</span>
-                  </p>
-              
-              
-              
-                  <p class="copyright-item">
-                      <span>License:</span>
-                      <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
-                  </p>
-              
-              
-                   <p class="copyright-item">
-                       <span>Slogan:</span>
-                       <span>A million foe won't bend my will.</span>
-                   </p>
-              
+        </div>
 
-          </section>
-      
-      <section class="post-tags">
-          <div>
-              <span>Tag(s):</span>
-              <span class="tag">
-                  
-                  
-                      <a href="/tags/Chinese/"># Chinese</a>
-                  
-                      <a href="/tags/Comment/"># Comment</a>
-                  
-                      <a href="/tags/来自新世界/"># 来自新世界</a>
-                  
-                      
-              </span>
-          </div>
-          <div>
-              <a href="javascript:window.history.back();">back</a>
-              <span>· </span>
-              <a href="/">home</a>
-          </div>
-      </section>
-      <section class="post-nav">
-          
-              <a class="prev" rel="prev" href="/2019/04/06/Tips-about-Landing-a-Job/">Tips about Landing a Job</a>
-          
-          
-      </section>
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Wahng</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>A million foe won't bend my will.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Chinese/"># Chinese</a>
+                    
+                        <a href="/tags/Comment/"># Comment</a>
+                    
+                        <a href="/tags/来自新世界/"># 来自新世界</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/04/06/Tips-about-Landing-a-Job/">Tips about Landing a Job</a>
+            
+            
+        </section>
+
+
     </article>
 </div>
 
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
+
     </div>
 </body>
 </html>

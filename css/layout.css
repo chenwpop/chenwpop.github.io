@@ -8,6 +8,10 @@
   height: 4rem;
   line-height: 4rem;
   width: 100%;
+  background-color: $light-border-color;
+}
+.dark-theme .navbar {
+  background-color: $dark-background-color;
 }
 .navbar .container {
   width: auto;

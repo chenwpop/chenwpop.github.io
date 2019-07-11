@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en, ch">
+<html lang="en">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -31,6 +31,53 @@
     
     <script src="/js/script.js"></script>
     
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
 
 
 </head>
@@ -39,7 +86,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/"><b>Ark Pusheen</b></a></div>
+            <div class="navbar-header header-logo"><a href="/">Ark Pusheen</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -50,7 +97,7 @@
                 
                     <a class="menu-item" href="/about">About</a>
                 
-                <input id="switch_default" type="checkbox" hidden class="switch_default">
+                <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
 
@@ -94,46 +141,109 @@
         }
     }
 </script>
-
         <div class="main">
             <div class="container">
-  
-  
-    <div id="post-toc" class="post-toc">
-      <span class="post-toc-title">catalogue</span>
-      <div class="post-toc-content">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Undirected-Graphs"><span class="toc-text">Undirected Graphs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Definitions"><span class="toc-text">Definitions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Graph-Representation"><span class="toc-text">Graph Representation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Graph-API"><span class="toc-text">Graph API</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Graph-Traversal"><span class="toc-text">Graph Traversal</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Path-API"><span class="toc-text">Path API</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Depth-First-Search"><span class="toc-text">Depth First Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Breath-First-Search"><span class="toc-text">Breath First Search</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Connected-Component"><span class="toc-text">Connected Component</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Practices-for-Undirected-Graphs"><span class="toc-text">Practices for Undirected Graphs</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Directed-Graphs"><span class="toc-text">Directed Graphs</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Directions"><span class="toc-text">Directions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Graph-Representation-1"><span class="toc-text">Graph Representation</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Digraph-Traversal"><span class="toc-text">Digraph Traversal</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Reachability"><span class="toc-text">Reachability</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Multiple-Source-Shortest-Path"><span class="toc-text">Multiple-Source Shortest Path</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Topological-Sort"><span class="toc-text">Topological Sort</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Strongly-connected-Component"><span class="toc-text">Strongly-connected Component</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Kosaraju-Sharir-Algorithm"><span class="toc-text">Kosaraju-Sharir Algorithm</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WordNet"><span class="toc-text">WordNet</span></a></li></ol>
-      </div>
-    </div>
     
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
     
     <article class="post-wrap">
-      <header class="post-header">
-        <h1 class="post-title">Algorithms II, Graphs</h1>
-          
-            <div class="post-meta">
-              
-                    Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
-              
+        <header class="post-header">
+            <h1 class="post-title">Algorithms II, Graphs</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
+                    
 
-              
-                <span class="post-time">
-                  Date: <a href="#">Jul 10, 2019&nbsp;&nbsp;15:06:35</a>
-                </span>
-              
-              
-                <span class="post-category">
-                Category:
-                  
-                    <a href="/categories/Algorithms/">Algorithms</a>
-                  
-                </span>
-              
-            </div>
-          
-      </header>
-      <section class="post-content">
-        <h2 id="Undirected-Graphs"><a href="#Undirected-Graphs" class="headerlink" title="Undirected Graphs"></a>Undirected Graphs</h2><h3 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h3><ul>
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jul 10, 2019&nbsp;&nbsp;15:06:35</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Algorithms/">Algorithms</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>In this blog, assume that</p>
+<ul>
+<li>numeric vertices</li>
+<li>no parallel edges</li>
+<li>no self loop in the graph</li>
+<li>|V|: number of vertices, |E|: number of edges</li>
+</ul>
+<h1 id="Undirected-Graphs"><a href="#Undirected-Graphs" class="headerlink" title="Undirected Graphs"></a>Undirected Graphs</h1><h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
 <li>Graph: group of vertices pairwise connected by edges</li>
 <li>Path: sequence of vertices connected by edges</li>
 <li>Cycle: path whose first and last vertices are the same</li>
@@ -143,22 +253,47 @@
 <li>Euler Tour: a cycle that uses each edge exactly once</li>
 <li>Hamilton Tour: a cycle that uses each vertex exactly once</li>
 </ul>
-<p>In this blog, assume that</p>
-<ul>
-<li>numeric vertices</li>
-<li>no parallel edges</li>
-<li>no self loop in the graph</li>
-<li>|V|: number of vertices, |E|: number of edges</li>
-</ul>
-<h3 id="Graph-Representation"><a href="#Graph-Representation" class="headerlink" title="Graph Representation"></a>Graph Representation</h3><ul>
+<h2 id="Graph-Representation"><a href="#Graph-Representation" class="headerlink" title="Graph Representation"></a>Graph Representation</h2><ul>
 <li><strong>Set of Edges</strong>: maintain a list of edges.</li>
 <li><strong>Adjacency Matrix</strong>: maintain a two dimensional V-by-V boolean array.</li>
 <li><strong>Adjacency List</strong>:maintain vertex-indexed array of lists. The most common used one in real world.</li>
 </ul>
-<p>The space complexity and time complexity of some operations are listed below,<br>|Representation|Space|Add Edge| Check existence of edge between <code>v</code> and <code>w</code>|iterate over edges adjacent to <code>v</code>|<br>|:–:|:–:|:–:|:–:|:–:|<br>|Set of Edges||E|| 1  | |E|  | |E|  |<br>|Adjacency Matrix   | $|V|^2$  | 1  | 1  | |V|  |<br>| Adjacency List  | |V|+|E|  | 1  |  degree(V) | degree(V)  |</p>
-<h4 id="Graph-API"><a href="#Graph-API" class="headerlink" title="Graph API"></a>Graph API</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(<span class="keyword">int</span> V)</span></span>; <span class="comment">// create an empty graph with V vertices</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>; <span class="comment">// add an edge v-w</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">V</span><span class="params">()</span></span>; <span class="comment">// number of vertices</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">E</span><span class="params">()</span></span>; <span class="comment">// number of edges</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterable&lt;Integer&gt; <span class="title">adj</span><span class="params">(<span class="keyword">int</span> V)</span></span>; <span class="comment">// all vertices adjacent to V</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>; <span class="comment">// String representation of the graph</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>The space complexity and time complexity of some operations are listed below,</p>
+<table>
+<thead>
+<tr>
+<th>Representation</th>
+<th>Space</th>
+<th>Add Edge</th>
+<th>Check existence of edge between <code>v</code> and <code>w</code></th>
+<th>iterate over edges adjacent to <code>v</code></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Set of Edges</td>
+<td>|E|</td>
+<td>1</td>
+<td>|E|</td>
+<td>|E|</td>
+</tr>
+<tr>
+<td>Adjacency Matrix</td>
+<td>$|V|^2$</td>
+<td>1</td>
+<td>1</td>
+<td>|V|</td>
+</tr>
+<tr>
+<td>Adjacency List</td>
+<td>|V|+|E|</td>
+<td>1</td>
+<td>degree(V)</td>
+<td>degree(V)</td>
+</tr>
+</tbody></table>
+<h3 id="Graph-API"><a href="#Graph-API" class="headerlink" title="Graph API"></a>Graph API</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Graph</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Graph</span><span class="params">(<span class="keyword">int</span> V)</span></span>; <span class="comment">// create an empty graph with V vertices</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addEdge</span><span class="params">(<span class="keyword">int</span> v, <span class="keyword">int</span> w)</span></span>; <span class="comment">// add an edge v-w</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">V</span><span class="params">()</span></span>; <span class="comment">// number of vertices</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">E</span><span class="params">()</span></span>; <span class="comment">// number of edges</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterable&lt;Integer&gt; <span class="title">adj</span><span class="params">(<span class="keyword">int</span> V)</span></span>; <span class="comment">// all vertices adjacent to V</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span></span>; <span class="comment">// String representation of the graph</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="Graph-Traversal"><a href="#Graph-Traversal" class="headerlink" title="Graph Traversal"></a>Graph Traversal</h3><h4 id="Path-API"><a href="#Path-API" class="headerlink" title="Path API"></a>Path API</h4><p>Graph processing design pattern</p>
+<h2 id="Graph-Traversal"><a href="#Graph-Traversal" class="headerlink" title="Graph Traversal"></a>Graph Traversal</h2><h3 id="Path-API"><a href="#Path-API" class="headerlink" title="Path API"></a>Path API</h3><p>Graph processing design pattern</p>
 <ol>
 <li>Create Graph object</li>
 <li>Pass the Graph to a graph-processing routine</li>
@@ -166,7 +301,7 @@
 
 </li>
 </ol>
-<h4 id="Depth-First-Search"><a href="#Depth-First-Search" class="headerlink" title="Depth First Search"></a>Depth First Search</h4><ul>
+<h3 id="Depth-First-Search"><a href="#Depth-First-Search" class="headerlink" title="Depth First Search"></a>Depth First Search</h3><ul>
 <li><p><strong>Typical Usage</strong>: find all vertices connected to a vertex, find a path between two vertices</p>
 </li>
 <li><p><strong>Basic Idea</strong>:</p>
@@ -175,10 +310,10 @@
 <li><p><strong>Code</strong>:</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span>[] marked; <span class="comment">// whether this vertex is visited</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] edgeTo[]; <span class="comment">// edgeTo[i] = j means an edge exists between i and j</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> s; <span class="comment">// the starting vertex of DFS</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Graph G, <span class="keyword">int</span> s)</span> </span>&#123;</span><br><span class="line">  marked[s] = <span class="keyword">true</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i : G.adj(s))</span><br><span class="line">    <span class="keyword">if</span> (!marked[i]) &#123;</span><br><span class="line">      dfs(G, i);</span><br><span class="line">      <span class="comment">// don't reverse the order of i and s. This command connects a tree centered at s (so the edgeTo[s] is null).</span></span><br><span class="line">      <span class="comment">// When trace the path between s and other vertex v, starting from v and jump to edgeTo[edgeTo[v]...] until we meet s.</span></span><br><span class="line">      <span class="comment">// If change it as edgeTo[s] = i, we can't retrospect the path between s and a specific vertex.</span></span><br><span class="line">      edgeTo[i] = s;  </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>Complexity</strong>: $|V|<em>{connected} + |E|</em>{connected}$, since all vertices and edges are visited exactly once.</p>
+<li><p><strong>Complexity</strong>: |V| + |E|, since all vertices and edges are visited exactly once.</p>
 </li>
 </ul>
-<h4 id="Breath-First-Search"><a href="#Breath-First-Search" class="headerlink" title="Breath First Search"></a>Breath First Search</h4><ul>
+<h3 id="Breath-First-Search"><a href="#Breath-First-Search" class="headerlink" title="Breath First Search"></a>Breath First Search</h3><ul>
 <li><p><strong>Typical Usage</strong>: find the shortest path between s and all other vertices, find all vertices connected to s</p>
 </li>
 <li><p><strong>Basic Idea</strong>:</p>
@@ -187,10 +322,10 @@
 <li><p><strong>Code</strong>:<br>In this code snippets, we create a queue to store all vertices to be visited, however, we don’t need an explicit stack structure for DFS. This is because the JVM runs all method calls in a First-In-Last-Out manner, which simulates the stack structure.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span>[] marked; <span class="comment">// whether this vertex is visited</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span>[] edgeTo; <span class="comment">// edgeTo[i] = j means an edge exists between i and j</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> s; <span class="comment">// the starting vertex of BFS</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bfs</span><span class="params">(Graph G, <span class="keyword">int</span> s)</span> </span>&#123;</span><br><span class="line">  Queue&lt;Integer&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">  <span class="comment">// mark a vertex as visited upon enqueuing it</span></span><br><span class="line">  marked[s] = <span class="keyword">true</span>;</span><br><span class="line">  queue.offer(s);</span><br><span class="line">  <span class="keyword">while</span> (!queue.isEmpty()) &#123;</span><br><span class="line">    <span class="keyword">int</span> v = queue.dequeue();</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i : G.adj(v))</span><br><span class="line">      <span class="keyword">if</span> (!marked[i]) &#123;</span><br><span class="line">        marked[i];</span><br><span class="line">        queue.offer(i);</span><br><span class="line">        edgeTo[i] = v;</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
-<li><p><strong>Complexity</strong>: $|V|<em>{connected} + |E|</em>{connected}$, since all connected vertices and edges are visited exactly once.</p>
+<li><p><strong>Complexity</strong>: |V| + |E|, since all connected vertices and edges are visited exactly once.</p>
 </li>
 </ul>
-<h4 id="Connected-Component"><a href="#Connected-Component" class="headerlink" title="Connected Component"></a>Connected Component</h4><ul>
+<h3 id="Connected-Component"><a href="#Connected-Component" class="headerlink" title="Connected Component"></a>Connected Component</h3><ul>
 <li><p><strong>Typical Usage</strong>: image flood fill, particle detection</p>
 </li>
 <li><p><strong>Basic Idea</strong>:</p>
@@ -202,27 +337,24 @@
 <li><p><strong>Complexity</strong>: |V| + |E|, consider as applying DFS to each connected component.</p>
 </li>
 </ul>
-<h3 id="Practices-for-Undirected-Graphs"><a href="#Practices-for-Undirected-Graphs" class="headerlink" title="Practices for Undirected Graphs"></a>Practices for Undirected Graphs</h3><ul>
+<h2 id="Practices-for-Undirected-Graphs"><a href="#Practices-for-Undirected-Graphs" class="headerlink" title="Practices for Undirected Graphs"></a>Practices for Undirected Graphs</h2><ul>
 <li>Is a graph bipartite?<br>Starting from a random vertex, traverse the graph with BFS, and color adjacent layer with different group. If no conflicts occurs, then the graph is bipartite.</li>
 <li>Does a cycle exist?<br>Starting from a random vertex, do DFS and keep track of all vertices in current path. If an on-path vertex is visited twice, then a cycle exists.</li>
-<li>To find an Euler tour?</li>
-</ul>
-<p><strong>A graph is Eulerian iff all vertices have even degree.</strong> First, check whether the graph is Eulerian, and sort all vertices by degree in descending order. Starting from the vertex with largest degree, then visit the vertex with largest degree among its adjacent vertices. Keep track of visited edges to avoid using them twice. Repeat these steps until all edges are visited.</p>
-<ul>
+<li>To find an Euler tour?<br>A graph is Eulerian iff all vertices have even degree. First, check whether the graph is Eulerian, and sort all vertices by degree in descending order. Starting from the vertex with largest degree, then visit the vertex with largest degree among its adjacent vertices. Keep track of visited edges to avoid using them twice. Repeat these steps until all edges are visited.</li>
 <li>To get the diameter?<br>First, run BFS with a random vertex, keep the farthest vertex, then run another BFS with it.</li>
 </ul>
-<h2 id="Directed-Graphs"><a href="#Directed-Graphs" class="headerlink" title="Directed Graphs"></a>Directed Graphs</h2><h3 id="Directions"><a href="#Directions" class="headerlink" title="Directions"></a>Directions</h3><ul>
+<h1 id="Directed-Graphs"><a href="#Directed-Graphs" class="headerlink" title="Directed Graphs"></a>Directed Graphs</h1><h2 id="Definitions-1"><a href="#Definitions-1" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
 <li>Digraph: abbreviation of directed graphs</li>
 <li>In Degree: number of edges that points to this vertex</li>
 <li>Out Degree: number of edges that points out this vertex</li>
 <li>Strongly-connected Component: directed bidirectional paths exist for all pairs of vertices</li>
 <li>Directed Acyclic Graph: the literal meaning. It may not be a tree, since each tree node has only one parent.</li>
 </ul>
-<h3 id="Graph-Representation-1"><a href="#Graph-Representation-1" class="headerlink" title="Graph Representation"></a>Graph Representation</h3><p>Similar to undirected graphs, adjacency list is the most practical way. Notice that, in <code>adj[v]</code>, we only store the edges that go from vertex <code>v</code>.</p>
-<h3 id="Digraph-Traversal"><a href="#Digraph-Traversal" class="headerlink" title="Digraph Traversal"></a>Digraph Traversal</h3><h4 id="Reachability"><a href="#Reachability" class="headerlink" title="Reachability"></a>Reachability</h4><p>Starting from vertex <code>v</code>, find all reachable vertices along a directed path. The idea and implementation is identical to the DFS algorithm of undirected graph.</p>
+<h2 id="Graph-Representation-1"><a href="#Graph-Representation-1" class="headerlink" title="Graph Representation"></a>Graph Representation</h2><p>Similar to undirected graphs, adjacency list is the most practical way. Notice that, in <code>adj[v]</code>, we only store the edges that go from vertex <code>v</code>.</p>
+<h2 id="Digraph-Traversal"><a href="#Digraph-Traversal" class="headerlink" title="Digraph Traversal"></a>Digraph Traversal</h2><h3 id="Reachability"><a href="#Reachability" class="headerlink" title="Reachability"></a>Reachability</h3><p>Starting from vertex <code>v</code>, find all reachable vertices along a directed path. The idea and implementation is identical to the DFS algorithm of undirected graph.</p>
 <p>Typical usage of reachability problem is to analyze the program control flow. Check whether the exit is reachable to avoid infinite loop, find and remove unreachable code blocks to eliminate dead code. Another useage is the Garbage Collector of Java, it mark all reachable resources, and free the unmarked memory.</p>
-<h4 id="Multiple-Source-Shortest-Path"><a href="#Multiple-Source-Shortest-Path" class="headerlink" title="Multiple-Source Shortest Path"></a>Multiple-Source Shortest Path</h4><p>Given a group of vertices <code>g</code>, find the shortest path of all other vertices to any vertices in <code>g</code>. The idea is to run BFS to this graph, but at beginning, enqueue all vertices in <code>g</code>.</p>
-<h3 id="Topological-Sort"><a href="#Topological-Sort" class="headerlink" title="Topological Sort"></a>Topological Sort</h3><p>Given a sequence of tasks and their prerequisite relationship, find the right order to fulfill them all.</p>
+<h3 id="Multiple-Source-Shortest-Path"><a href="#Multiple-Source-Shortest-Path" class="headerlink" title="Multiple-Source Shortest Path"></a>Multiple-Source Shortest Path</h3><p>Given a group of vertices <code>g</code>, find the shortest path of all other vertices to any vertices in <code>g</code>. The idea is to run BFS to this graph, but at beginning, enqueue all vertices in <code>g</code>.</p>
+<h2 id="Topological-Sort"><a href="#Topological-Sort" class="headerlink" title="Topological Sort"></a>Topological Sort</h2><p>Given a sequence of tasks and their prerequisite relationship, find the right order to fulfill them all.</p>
 <ul>
 <li><strong>Directed Acyclic Graph</strong>:<br>The pre exercise for this problem is to check whether a graph is a DAG, as topological sort for cyclic graph is impossible. The basic idea is the same with undirected graph as well, to use DFS, track current path and detect potential conflicts.</li>
 <li><strong>Basic Idea</strong>: starting from the ancestor vertex, which has no incoming edges, run DFS to the graph, then the reverse postorder is topological sorted.</li>
@@ -230,88 +362,75 @@
 
 </li>
 </ul>
-<h3 id="Strongly-connected-Component"><a href="#Strongly-connected-Component" class="headerlink" title="Strongly-connected Component"></a>Strongly-connected Component</h3><p>Strongly-connected component is cyclic, so in a DAG, each vertex is a stand-alone strongly-connected component. So how to find all strongly-connected components for a normal digraph?</p>
-<h4 id="Kosaraju-Sharir-Algorithm"><a href="#Kosaraju-Sharir-Algorithm" class="headerlink" title="Kosaraju-Sharir Algorithm"></a>Kosaraju-Sharir Algorithm</h4><p>Kosaraju is a Russian professor. Once upon a time he forget to bring the lecture notes to class, so he developed such an easy-to-use algorithm to teach it.<br>The basic idea is,</p>
+<h2 id="Strongly-connected-Component"><a href="#Strongly-connected-Component" class="headerlink" title="Strongly-connected Component"></a>Strongly-connected Component</h2><p>Strongly-connected component is cyclic, so in a DAG, each vertex is a stand-alone strongly-connected component. So how to find all strongly-connected components for a normal digraph?</p>
+<h3 id="Kosaraju-Sharir-Algorithm"><a href="#Kosaraju-Sharir-Algorithm" class="headerlink" title="Kosaraju-Sharir Algorithm"></a>Kosaraju-Sharir Algorithm</h3><p>Kosaraju is a Russian professor. Once upon a time he forget to bring the lecture notes to class, so he developed such an easy-to-use algorithm to teach it.<br>The basic idea is,</p>
 <ol>
-<li><strong>Get the topological order on the reverse graph of <code>G</code>.</strong> The phrase <em>topological order</em> is quite confusing for me at first. Topological order for any digraph indeed exists, while the topological sort is impossible for cyclic graph. To get the topological order, simply run the <a href="###-Topological-Sort">topological sort algorithm</a> on this graph.</li>
-<li><strong>Run DFS in G, visit the unmarked vertices in topological order.</strong><br>A simple but elegant algorithm.</li>
+<li><strong>Get the topological order on the reverse graph of <code>G</code>.</strong> The phrase <em>topological order</em> is quite confusing for me at first. Topological order for any digraph indeed exists, while the topological sort is impossible for cyclic graph. To get the topological order, simply run the <a href="#Topological-Sort">topological sort algorithm</a> on this graph.</li>
+<li><strong>Run DFS in <code>G</code>, visit the unmarked vertices in topological order.</strong><br>A simple but elegant algorithm.</li>
 </ol>
-<h2 id="WordNet"><a href="#WordNet" class="headerlink" title="WordNet"></a>WordNet</h2><p>My <a href>solution</a> for <a href="https://coursera.cs.princeton.edu/algs4/assignments/wordnet/specification.php" target="_blank" rel="noopener">WordNet programming assignment</a>.</p>
+<h2 id="WordNet"><a href="#WordNet" class="headerlink" title="WordNet"></a>WordNet</h2><p>My <a href>solution</a> for the <a href="https://coursera.cs.princeton.edu/algs4/assignments/wordnet/specification.php" target="_blank" rel="noopener">WordNet</a>  programming assignment.</p>
 
-      </section>
-      <div id="disqus_thread"></div>
-        <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        var disqus_config = function () {
-        //this.page.url = chenwpop.github.io;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = ARK_PUSHEEN; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://arkpusheen.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        </div>
+
         
-          <section class="post-copyright">
-              
-                  <p class="copyright-item">
-                      <span>Author:</span>
-                      <span>Chen Wahng</span>
-                  </p>
-              
-              
-              
-                  <p class="copyright-item">
-                      <span>License:</span>
-                      <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
-                  </p>
-              
-              
-                   <p class="copyright-item">
-                       <span>Slogan:</span>
-                       <span>A million foe won't bend my will.</span>
-                   </p>
-              
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Wahng</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>A million foe won't bend my will.</span>
+                     </p>
+                
 
-          </section>
-      
-      <section class="post-tags">
-          <div>
-              <span>Tag(s):</span>
-              <span class="tag">
-                  
-                  
-                      <a href="/tags/Graphs/"># Graphs</a>
-                  
-                      
-              </span>
-          </div>
-          <div>
-              <a href="javascript:window.history.back();">back</a>
-              <span>· </span>
-              <a href="/">home</a>
-          </div>
-      </section>
-      <section class="post-nav">
-          
-          
-          <a class="next" rel="next" href="/2019/07/08/明日方舟干员基建技能整合/">明日方舟干员基建技能整合</a>
-          
-      </section>
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Graphs/"># Graphs</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/07/08/明日方舟干员基建技能整合/">明日方舟干员基建技能整合</a>
+            
+        </section>
+
+
     </article>
 </div>
 
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
+
     </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en, ch">
+<html lang="en">
 <head><meta name="generator" content="Hexo 3.9.0">
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -31,6 +31,15 @@
     
     <script src="/js/script.js"></script>
     
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
 
 
 </head>
@@ -39,7 +48,7 @@
         <header>
     <nav class="navbar">
         <div class="container">
-            <div class="navbar-header header-logo"><a href="/"><b>Ark Pusheen</b></a></div>
+            <div class="navbar-header header-logo"><a href="/">Ark Pusheen</a></div>
             <div class="menu navbar-right">
                 
                     <a class="menu-item" href="/archives">Posts</a>
@@ -50,7 +59,7 @@
                 
                     <a class="menu-item" href="/about">About</a>
                 
-                <input id="switch_default" type="checkbox" hidden class="switch_default">
+                <input id="switch_default" type="checkbox" class="switch_default">
                 <label for="switch_default" class="toggleBtn"></label>
             </div>
 
@@ -94,46 +103,102 @@
         }
     }
 </script>
-
         <div class="main">
             <div class="container">
-  
-  
-    <div id="post-toc" class="post-toc">
-      <span class="post-toc-title">catalogue</span>
-      <div class="post-toc-content">
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#the-Sample-Class"><span class="toc-text">the Sample Class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-Package-Statement"><span class="toc-text">[1] Package Statement</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-Import-Statements"><span class="toc-text">[2] Import Statements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-Class-Header"><span class="toc-text">[3] Class Header</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#public"><span class="toc-text">public</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stack-lt-Item-gt"><span class="toc-text">Stack&lt;Item&gt;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#implements"><span class="toc-text">implements</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Abstract-Class"><span class="toc-text">Abstract Class</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#extends"><span class="toc-text">extends</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-Access-Control"><span class="toc-text">[4] Access Control</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Public-Private-Protected-and-the-default"><span class="toc-text">Public, Private, Protected, and the default</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#static-and-final"><span class="toc-text">static and final</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-Constructor"><span class="toc-text">[5] Constructor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-Getter-and-Setter"><span class="toc-text">[6] Getter and Setter</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-Equality-Test"><span class="toc-text">[7] Equality Test</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-Documentation"><span class="toc-text">[8] Documentation</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-toString-Method"><span class="toc-text">[9] toString() Method</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-Static-Inner-Class"><span class="toc-text">[10] Static Inner Class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-Exceptions"><span class="toc-text">[11] Exceptions</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Throw"><span class="toc-text">Throw</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Catch"><span class="toc-text">Catch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#12-Inner-Class"><span class="toc-text">[12] Inner Class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#13-Iterator"><span class="toc-text">[13] Iterator</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#14-Command-Line-Arguments"><span class="toc-text">[14] Command Line Arguments</span></a></li></ol>
-      </div>
-    </div>
     
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
     
     <article class="post-wrap">
-      <header class="post-header">
-        <h1 class="post-title">Learn Java Essentials from One Class</h1>
-          
-            <div class="post-meta">
-              
-                    Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
-              
+        <header class="post-header">
+            <h1 class="post-title">Learn Java Essentials from One Class</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
+                    
 
-              
-                <span class="post-time">
-                  Date: <a href="#">Jul 06, 2019&nbsp;&nbsp;15:30:42</a>
-                </span>
-              
-              
-                <span class="post-category">
-                Category:
-                  
-                    <a href="/categories/Java/">Java</a>
-                  
-                </span>
-              
-            </div>
-          
-      </header>
-      <section class="post-content">
-        <p>To understand this blog, you have to be familiar with some basic programming concepts, such as variables, constants, operators, control flow, etc. This blog mainly comes from my notes of the brilliant Core Java series <a href="http://horstmann.com/corejava/index.html" target="_blank" rel="noopener">Core Java by Cay S. Horstmann and Gray Cornell</a>. If you need thorough and systematic learning of Java, I recommend you to read those books, at least <em>Volume I, Fundamentals</em>. Apparently, I’m not a Java expert, and I make easy mistakes, besides, I’m not a native speaker, so some of my statement may be buggy. Sincerely, any comments and advice are highly welcome.</p>
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jul 6, 2019&nbsp;&nbsp;15:30:42</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Java/">Java</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>To understand this blog, you have to be familiar with some basic programming concepts, such as variables, constants, operators, control flow, etc. This blog mainly comes from my notes of the brilliant Core Java series <a href="http://horstmann.com/corejava/index.html" target="_blank" rel="noopener">Core Java by Cay S. Horstmann and Gray Cornell</a>. If you need thorough and systematic learning of Java, I recommend you to read those books, at least <em>Volume I, Fundamentals</em>. Apparently, I’m not a Java expert, and I make easy mistakes, besides, I’m not a native speaker, so some of my statement may be buggy. Sincerely, any comments and advice are highly welcome.</p>
 <h2 id="the-Sample-Class"><a href="#the-Sample-Class" class="headerlink" title="the Sample Class"></a>the Sample Class</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// [1] Package Statement</span></span><br><span class="line"><span class="keyword">package</span> edu.princeton.cs.algs4;</span><br><span class="line"></span><br><span class="line"><span class="comment">// [2] Import Statements</span></span><br><span class="line"><span class="keyword">import</span> java.util.Iterator;</span><br><span class="line"><span class="keyword">import</span> java.util.NoSuchElementException;</span><br><span class="line"><span class="keyword">import</span> <span class="keyword">static</span> java.lang.System.*;</span><br><span class="line"></span><br><span class="line"><span class="comment">// [3] Class header</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Stack</span>&lt;<span class="title">Item</span>&gt; <span class="keyword">implements</span> <span class="title">Iterable</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [4] Access Control</span></span><br><span class="line">    <span class="keyword">private</span> Node&lt;Item&gt; first;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [5] Constructor</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        first = <span class="keyword">null</span>;</span><br><span class="line">        n = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">(Item item)</span> </span>&#123;</span><br><span class="line">      <span class="keyword">this</span>();</span><br><span class="line">      <span class="keyword">this</span>.push(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [6] Getter and Setter</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [7] Equality Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> first == <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [8] Documentation</span></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Removes and returns the item most recently added to this stack.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> the item most recently added</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> NoSuchElementException if this stack is empty</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException(<span class="string">"Stack underflow"</span>);</span><br><span class="line">        Item item = first.item;        <span class="comment">// save item to return</span></span><br><span class="line">        first = first.next;            <span class="comment">// delete first node</span></span><br><span class="line">        n--;</span><br><span class="line">        <span class="keyword">return</span> item;                   <span class="comment">// return the saved item</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [9] toString() Method</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        StringBuilder s = <span class="keyword">new</span> StringBuilder();</span><br><span class="line">        <span class="keyword">for</span> (Item item : <span class="keyword">this</span>) &#123;</span><br><span class="line">            s.append(item + <span class="string">" "</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> s.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [10] Static Inner Class</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Item item;</span><br><span class="line">        <span class="keyword">private</span> Node&lt;Item&gt; next;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [11] Exceptions</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Item <span class="title">peek</span><span class="params">()</span> <span class="keyword">throws</span> NoSuchElementException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (isEmpty()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException(<span class="string">"Stack underflow"</span>);</span><br><span class="line">        <span class="keyword">return</span> first.item;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [12] Inner Class</span></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">ListIterator</span> <span class="keyword">implements</span> <span class="title">Iterator</span>&lt;<span class="title">Item</span>&gt; </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> Node&lt;Item&gt; current;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">ListIterator</span><span class="params">(Node&lt;Item&gt; first)</span> </span>&#123;</span><br><span class="line">            current = first;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> current != <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> Item <span class="title">next</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (!hasNext()) <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">            Item item = current.item;</span><br><span class="line">            current = current.next;</span><br><span class="line">            <span class="keyword">return</span> item;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Item item)</span> </span>&#123;</span><br><span class="line">        Node&lt;Item&gt; oldfirst = first;</span><br><span class="line">        first = <span class="keyword">new</span> Node&lt;Item&gt;();</span><br><span class="line">        first.item = item;</span><br><span class="line">        first.next = oldfirst;</span><br><span class="line">        n++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [13] Iterator</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;Item&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ListIterator(first);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// [14] Command Line Arguments, a variable number of arguments</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// do some unit test</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>The above code snippets are based on the JAR of <a href="https://algs4.cs.princeton.edu/13stacks/Stack.java.html" target="_blank" rel="noopener">algs4</a>, developed by the CS department in the Princeton University. I remove some content to make it more handleable.</p>
@@ -297,92 +362,79 @@
 <li>Due to this syntax, all command line arguments following the <code>ClassName</code> are considered as main method arguments. Consequently, all other functional command line arguments, such as <code>--classpath</code>, have to be placed before the <code>ClassName</code>.</li>
 </ul>
 
-      </section>
-      <div id="disqus_thread"></div>
-        <script>
-        /**
-        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
-        var disqus_config = function () {
-        //this.page.url = chenwpop.github.io;  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = ARK_PUSHEEN; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-        };
-        (function() { // DON'T EDIT BELOW THIS LINE
-        var d = document, s = d.createElement('script');
-        s.src = 'https://arkpusheen.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
-        })();
-        </script>
-        <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-        
-          <section class="post-copyright">
-              
-                  <p class="copyright-item">
-                      <span>Author:</span>
-                      <span>Chen Wahng</span>
-                  </p>
-              
-              
-              
-                  <p class="copyright-item">
-                      <span>License:</span>
-                      <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
-                  </p>
-              
-              
-                   <p class="copyright-item">
-                       <span>Slogan:</span>
-                       <span>A million foe won't bend my will.</span>
-                   </p>
-              
+        </div>
 
-          </section>
-      
-      <section class="post-tags">
-          <div>
-              <span>Tag(s):</span>
-              <span class="tag">
-                  
-                  
-                      <a href="/tags/Access-Control/"># Access Control</a>
-                  
-                      <a href="/tags/Documentation/"># Documentation</a>
-                  
-                      <a href="/tags/Inner-Class/"># Inner Class</a>
-                  
-                      <a href="/tags/Java-Basics/"># Java Basics</a>
-                  
-                      <a href="/tags/Exceptions/"># Exceptions</a>
-                  
-                      <a href="/tags/Iterator/"># Iterator</a>
-                  
-                      
-              </span>
-          </div>
-          <div>
-              <a href="javascript:window.history.back();">back</a>
-              <span>· </span>
-              <a href="/">home</a>
-          </div>
-      </section>
-      <section class="post-nav">
-          
-              <a class="prev" rel="prev" href="/2019/07/08/明日方舟干员基建技能整合/">明日方舟干员基建技能整合</a>
-          
-          
-          <a class="next" rel="next" href="/2019/07/05/Maven-Tutorial/">Maven Tutorial</a>
-          
-      </section>
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Wahng</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>A million foe won't bend my will.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Access-Control/"># Access Control</a>
+                    
+                        <a href="/tags/Documentation/"># Documentation</a>
+                    
+                        <a href="/tags/Inner-Class/"># Inner Class</a>
+                    
+                        <a href="/tags/Java-Basics/"># Java Basics</a>
+                    
+                        <a href="/tags/Exceptions/"># Exceptions</a>
+                    
+                        <a href="/tags/Iterator/"># Iterator</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/07/08/明日方舟干员基建技能整合/">明日方舟干员基建技能整合</a>
+            
+            
+            <a class="next" rel="next" href="/2019/07/05/Maven-Tutorial/">Maven Tutorial</a>
+            
+        </section>
+
+
     </article>
 </div>
 
         </div>
         <footer id="footer" class="footer">
     <div class="copyright">
-        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Sirice19/hexo-theme-Chic" target="_blank">Chic</a></span>
+        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
     </div>
 </footer>
+
     </div>
 </body>
 </html>
