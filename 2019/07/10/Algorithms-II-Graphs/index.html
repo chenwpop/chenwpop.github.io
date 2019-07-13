@@ -228,7 +228,7 @@
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categories/Algorithms/">Algorithms</a>
+                                <a href="/categories/Algorithms-Java/">Algorithms Java</a>
                             
                         </span>
                     
@@ -241,23 +241,23 @@
 <ul>
 <li>numeric vertices</li>
 <li>no parallel edges</li>
-<li>no self loop in the graph</li>
+<li>no self-loop in the graph</li>
 <li>|V|: number of vertices, |E|: number of edges</li>
 </ul>
 <h1 id="Undirected-Graphs"><a href="#Undirected-Graphs" class="headerlink" title="Undirected Graphs"></a>Undirected Graphs</h1><h2 id="Definitions"><a href="#Definitions" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
-<li>Graph: group of vertices pairwise connected by edges</li>
-<li>Path: sequence of vertices connected by edges</li>
+<li>Graph: a group of vertices pairwise connected by edges</li>
+<li>Path: a sequence of vertices connected by edges</li>
 <li>Cycle: path whose first and last vertices are the same</li>
 <li>Degree: number of edges connected with the vertex</li>
 <li>Connected Component: a maximal set of connected vertices</li>
-<li>Bipartite: whether a graph can be divided into 2 groups that each edge connects 2 vertices from different group</li>
+<li>Bipartite: whether a graph can be divided into 2 groups that each edge connects 2 vertices from different groups</li>
 <li>Euler Tour: a cycle that uses each edge exactly once</li>
 <li>Hamilton Tour: a cycle that uses each vertex exactly once</li>
 </ul>
 <h2 id="Graph-Representation"><a href="#Graph-Representation" class="headerlink" title="Graph Representation"></a>Graph Representation</h2><ul>
 <li><strong>Set of Edges</strong>: maintain a list of edges.</li>
-<li><strong>Adjacency Matrix</strong>: maintain a two dimensional V-by-V boolean array.</li>
-<li><strong>Adjacency List</strong>:maintain vertex-indexed array of lists. The most common used one in real world.</li>
+<li><strong>Adjacency Matrix</strong>: maintain a two-dimensional V-by-V boolean array.</li>
+<li><strong>Adjacency List</strong>: maintain a vertex-indexed array of lists. The most commonly used one in the real world.</li>
 </ul>
 <p>The space complexity and time complexity of some operations are listed below,</p>
 <table>
@@ -296,7 +296,7 @@
 
 <h2 id="Graph-Traversal"><a href="#Graph-Traversal" class="headerlink" title="Graph Traversal"></a>Graph Traversal</h2><h3 id="Path-API"><a href="#Path-API" class="headerlink" title="Path API"></a>Path API</h3><p>Graph processing design pattern</p>
 <ol>
-<li>Create Graph object</li>
+<li>Create a Graph object</li>
 <li>Pass the Graph to a graph-processing routine</li>
 <li>Query the graph-processing routine for information<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Paths</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">Paths</span><span class="params">(Graph G, <span class="keyword">int</span> s)</span></span>; <span class="comment">// find paths centered at vertex s</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasPathTo</span><span class="params">(<span class="keyword">int</span> v)</span></span>; <span class="comment">// check the existence of a path between s and v</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Iterable&lt;Integer&gt; <span class="title">pathTo</span><span class="params">(<span class="keyword">int</span> v)</span></span>; <span class="comment">// a sequence of vertices in the path from s to v, null if no such path</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -339,9 +339,9 @@
 </li>
 </ul>
 <h2 id="Practices-for-Undirected-Graphs"><a href="#Practices-for-Undirected-Graphs" class="headerlink" title="Practices for Undirected Graphs"></a>Practices for Undirected Graphs</h2><ul>
-<li>Is a graph bipartite?<br>Starting from a random vertex, traverse the graph with BFS, and color adjacent layer with different group. If no conflicts occurs, then the graph is bipartite.</li>
-<li>Does a cycle exist?<br>Starting from a random vertex, do DFS and keep track of all vertices in current path. If an on-path vertex is visited twice, then a cycle exists.</li>
-<li>To find an Euler tour?<br>A graph is Eulerian iff all vertices have even degree. First, check whether the graph is Eulerian, and sort all vertices by degree in descending order. Starting from the vertex with largest degree, then visit the vertex with largest degree among its adjacent vertices. Keep track of visited edges to avoid using them twice. Repeat these steps until all edges are visited.</li>
+<li>Is a graph bipartite?<br>Starting from a random vertex, traverse the graph with BFS, and color adjacent layer with a different group. If no conflicts occur, then the graph is bipartite.</li>
+<li>Does a cycle exist?<br>Starting from a random vertex, do DFS and keep track of all vertices in the current path. If an on-path vertex is visited twice, then a cycle exists.</li>
+<li>To find a Euler tour?<br>A graph is Eulerian iff all vertices have even degree. First, check whether the graph is Eulerian, and sort all vertices by degree in descending order. Starting from the vertex with the largest degree, then visit the vertex with the largest degree among its adjacent vertices. Keep track of visited edges to avoid using them twice. Repeat these steps until all edges are visited.</li>
 <li>To get the diameter?<br>First, run BFS with a random vertex, keep the farthest vertex, then run another BFS with it.</li>
 </ul>
 <h1 id="Directed-Graphs"><a href="#Directed-Graphs" class="headerlink" title="Directed Graphs"></a>Directed Graphs</h1><h2 id="Definitions-1"><a href="#Definitions-1" class="headerlink" title="Definitions"></a>Definitions</h2><ul>
@@ -349,22 +349,22 @@
 <li>In Degree: number of edges that points to this vertex</li>
 <li>Out Degree: number of edges that points out this vertex</li>
 <li>Strongly-connected Component: directed bidirectional paths exist for all pairs of vertices</li>
-<li>Directed Acyclic Graph: the literal meaning. It may not be a tree, since each tree node has only one parent.</li>
+<li>Directed Acyclic Graph: the literal meaning. It may not be a tree since each tree node has only one parent.</li>
 </ul>
 <h2 id="Graph-Representation-1"><a href="#Graph-Representation-1" class="headerlink" title="Graph Representation"></a>Graph Representation</h2><p>Similar to undirected graphs, adjacency list is the most practical way. Notice that, in <code>adj[v]</code>, we only store the edges that go from vertex <code>v</code>.</p>
-<h2 id="Digraph-Traversal"><a href="#Digraph-Traversal" class="headerlink" title="Digraph Traversal"></a>Digraph Traversal</h2><h3 id="Reachability"><a href="#Reachability" class="headerlink" title="Reachability"></a>Reachability</h3><p>Starting from vertex <code>v</code>, find all reachable vertices along a directed path. The idea and implementation is identical to the DFS algorithm of undirected graph.</p>
-<p>Typical usage of reachability problem is to analyze the program control flow. Check whether the exit is reachable to avoid infinite loop, find and remove unreachable code blocks to eliminate dead code. Another useage is the Garbage Collector of Java, it mark all reachable resources, and free the unmarked memory.</p>
-<h3 id="Multiple-Source-Shortest-Path"><a href="#Multiple-Source-Shortest-Path" class="headerlink" title="Multiple-Source Shortest Path"></a>Multiple-Source Shortest Path</h3><p>Given a group of vertices <code>g</code>, find the shortest path of all other vertices to any vertices in <code>g</code>. The idea is to run BFS to this graph, but at beginning, enqueue all vertices in <code>g</code>.</p>
+<h2 id="Digraph-Traversal"><a href="#Digraph-Traversal" class="headerlink" title="Digraph Traversal"></a>Digraph Traversal</h2><h3 id="Reachability"><a href="#Reachability" class="headerlink" title="Reachability"></a>Reachability</h3><p>Starting from vertex <code>v</code>, find all reachable vertices along a directed path. The idea and implementation are identical to the DFS algorithm of undirected graph.</p>
+<p>Typical usage of the reachability problem is to analyze the program control flow. Check whether the exit is reachable to avoid an infinite loop, find and remove unreachable code blocks to eliminate dead code. Another usage is the Garbage Collector of Java, it marks all reachable resources, and free the unmarked memory.</p>
+<h3 id="Multiple-Source-Shortest-Path"><a href="#Multiple-Source-Shortest-Path" class="headerlink" title="Multiple-Source Shortest Path"></a>Multiple-Source Shortest Path</h3><p>Given a group of vertices <code>g</code>, find the shortest path of all other vertices to any vertices in <code>g</code>. The idea is to run BFS to this graph, but at the beginning, enqueue all vertices in <code>g</code>.</p>
 <h2 id="Topological-Sort"><a href="#Topological-Sort" class="headerlink" title="Topological Sort"></a>Topological Sort</h2><p>Given a sequence of tasks and their prerequisite relationship, find the right order to fulfill them all.</p>
 <ul>
-<li><strong>Directed Acyclic Graph</strong>:<br>The pre exercise for this problem is to check whether a graph is a DAG, as topological sort for cyclic graph is impossible. The basic idea is the same with undirected graph as well, to use DFS, track current path and detect potential conflicts.</li>
-<li><strong>Basic Idea</strong>: starting from the ancestor vertex, which has no incoming edges, run DFS to the graph, then the reverse postorder is topological sorted.</li>
+<li><strong>Directed Acyclic Graph</strong>:<br>The pre-exercise for this problem is to check whether a graph is a DAG, as topological sort for a cyclic graph is impossible. The basic idea is the same with undirected graph as well, to use DFS, track current path and detect potential conflicts.</li>
+<li><strong>Basic Idea</strong>: starting from the ancestor vertex, which has no incoming edges, run DFS to the graph, then the reverse postorder is topological sort.</li>
 <li><strong>Code</strong>:<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">boolean</span>[] marked; <span class="comment">// whether this vertex is visited</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">int</span> s; <span class="comment">// the vertex with no incoming edges</span></span><br><span class="line"><span class="comment">// the stack to store reverse order topological traversal</span></span><br><span class="line"><span class="keyword">private</span> Stack&lt;Integer&gt; reverseOrder;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Graph G, <span class="keyword">int</span> v)</span> </span>&#123;</span><br><span class="line">  marked[v] = <span class="keyword">true</span>;</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> i : G.adj(v))</span><br><span class="line">    <span class="keyword">if</span> (!marked[i]) dfs(G, i);</span><br><span class="line">  <span class="comment">// it's in reverse order, so the descendent is stacked</span></span><br><span class="line">  <span class="comment">// earlier than their ancestors.</span></span><br><span class="line">  reverseOrder.push(v);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> Iterable&lt;Integer&gt; <span class="title">topologicalSort</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  dfs(G, s);</span><br><span class="line">  <span class="keyword">return</span> reverseOrder;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </li>
 </ul>
 <h2 id="Strongly-connected-Component"><a href="#Strongly-connected-Component" class="headerlink" title="Strongly-connected Component"></a>Strongly-connected Component</h2><p>Strongly-connected component is cyclic, so in a DAG, each vertex is a stand-alone strongly-connected component. So how to find all strongly-connected components for a normal digraph?</p>
-<h3 id="Kosaraju-Sharir-Algorithm"><a href="#Kosaraju-Sharir-Algorithm" class="headerlink" title="Kosaraju-Sharir Algorithm"></a>Kosaraju-Sharir Algorithm</h3><p>Kosaraju is a Russian professor. Once upon a time he forget to bring the lecture notes to class, so he developed such an easy-to-use algorithm to teach it.<br>The basic idea is,</p>
+<h3 id="Kosaraju-Sharir-Algorithm"><a href="#Kosaraju-Sharir-Algorithm" class="headerlink" title="Kosaraju-Sharir Algorithm"></a>Kosaraju-Sharir Algorithm</h3><p>Kosaraju is a Russian professor. Once upon a time, he forgot to bring the lecture notes to class, so he developed such an easy-to-use algorithm to teach it.<br>The basic idea is,</p>
 <ol>
 <li><strong>Get the topological order on the reverse graph of <code>G</code>.</strong> The phrase <em>topological order</em> is quite confusing for me at first. Topological order for any digraph indeed exists, while the topological sort is impossible for cyclic graph. To get the topological order, simply run the <a href="#Topological-Sort">topological sort algorithm</a> on this graph.</li>
 <li><strong>Run DFS in <code>G</code>, visit the unmarked vertices in topological order.</strong><br>A simple but elegant algorithm.</li>
@@ -426,6 +426,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/07/13/Algorithms-I-Union-Find/">Algorithms I, Union Find</a>
             
             
             <a class="next" rel="next" href="/2019/07/08/明日方舟干员基建技能整合/">明日方舟干员基建技能整合</a>
