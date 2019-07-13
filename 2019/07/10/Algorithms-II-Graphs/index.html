@@ -368,7 +368,18 @@
 <li><strong>Get the topological order on the reverse graph of <code>G</code>.</strong> The phrase <em>topological order</em> is quite confusing for me at first. Topological order for any digraph indeed exists, while the topological sort is impossible for cyclic graph. To get the topological order, simply run the <a href="#Topological-Sort">topological sort algorithm</a> on this graph.</li>
 <li><strong>Run DFS in <code>G</code>, visit the unmarked vertices in topological order.</strong><br>A simple but elegant algorithm.</li>
 </ol>
-<h2 id="WordNet"><a href="#WordNet" class="headerlink" title="WordNet"></a>WordNet</h2><p>My <a href>solution</a> for the <a href="https://coursera.cs.princeton.edu/algs4/assignments/wordnet/specification.php" target="_blank" rel="noopener">WordNet</a>  programming assignment.</p>
+<h2 id="WordNet"><a href="#WordNet" class="headerlink" title="WordNet"></a>WordNet</h2><p>My <a href="https://github.com/chenwpop/Coursera-AlgorithmsII/tree/master/WordNet" target="_blank" rel="noopener">solution</a> for the <a href="https://coursera.cs.princeton.edu/algs4/assignments/wordnet/specification.php" target="_blank" rel="noopener">WordNet</a>  programming assignment.<br>Some style bug on my first submission:</p>
+<ol>
+<li><p>Calls the method ‘offer()’ but ignores its return value (which is used to signal an exceptional situation).<br>The method <code>Queue::add</code> and <code>Queue::remove</code> throw exceptions in case of bad elements, while <code>Queue::offer</code> and <code>Queue::poll</code> returns special value in order to let the programmer handle the exceptions. Use <code>Queue::offer</code> and <code>Queue::poll</code> when you check the return values.<br>Most implementations of queue prohibited <code>null</code> insertion, so <code>offer(null)</code> returns false and <code>add(null)</code> throws an exception. However, LinkedList allows null elements insertion.</p>
+</li>
+<li><p>Method XXX converts String to primitive using excessive boxing<br>The method <code>Integer::valueOf</code> returns an <code>Integer</code>, while <code>Integer.parseInt</code> returns an <code>int</code>. Use the type matched method to avoid excessive auto-boxing.</p>
+</li>
+<li><p>Array initialization can be written shorter</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arrayExample = &#123;a, b&#125; <span class="comment">// no need for "new int[] &#123;a, b&#125;"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>The private instance (or static) variable XXX can be made ‘final’; it is initialized only in the declaration or constructor.</p>
+</li>
+</ol>
 
         </div>
 
