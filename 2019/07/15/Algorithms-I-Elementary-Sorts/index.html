@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="description" content="Welcome to my blog, pull up a chair by the hearth!">
+
+
+    <meta name="keywords" content="Java, Algorithms, Pusheen, movies & TV shows">
+
+
+<title>Algorithms I, Elementary Sorts | Ark Pusheen</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ark Pusheen</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" hidden class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ark Pusheen</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Algorithms I, Elementary Sorts</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jul 15, 2019&nbsp;&nbsp;15:32:22</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Algorithms/">Algorithms</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="Warm-Up"><a href="#Warm-Up" class="headerlink" title="Warm-Up"></a>Warm-Up</h2><h3 id="Total-Order"><a href="#Total-Order" class="headerlink" title="Total Order"></a>Total Order</h3><ol>
+<li>Antisymmetry: if $v \le w$ and $w \le v$, then $w = v$.</li>
+<li>Transitivity: if $v \le w$ and $w \le x$, then $v \le x$.</li>
+<li>Totality: either $v \le w$ or $v \le w$ or both.<br>Common examples are chronological order, alphabetical order, and order of natural and real numbers. A surprising truth is that the $\le$ is not a toal order for <code>double</code> type.</li>
+</ol>
+<h3 id="Bubble-Sort"><a href="#Bubble-Sort" class="headerlink" title="Bubble Sort"></a>Bubble Sort</h3><p>Starting from the first element, compare it with each element with larger index, and switch them if they are in reverse order. In each iteration, bubble sort move the $i th$ smallest element to <code>array[i]</code>.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">bubbleSort</span><span class="params">(Comparable[] array)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; array.length; ++i)</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = array.length - <span class="number">1</span>; j &gt; i; --j)</span><br><span class="line">			<span class="keyword">if</span> (array[j].compareTo(array[j - <span class="number">1</span>]) &lt; <span class="number">0</span>) <span class="keyword">switch</span>(j - <span class="number">1</span>, j);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">switch</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">	Comparable temp = array[i];</span><br><span class="line">	array[i] = array[j];</span><br><span class="line">	array[j] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Comparable-Interface"><a href="#Comparable-Interface" class="headerlink" title="Comparable Interface"></a>Comparable Interface</h3><p>In the implementation of <a href="#Bubble-Sort">bubble sort</a> algorithm, there is a {@code compareTo} method, it is the core method of the <code>Comparable</code> interface. In practice, we usually don’t have to build the wheel, instead, Java provides a wide range of sort methods which work well with the <code>Comparable</code> interface. We will have a quick review of this interface.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Date</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">Date</span>&gt; </span>&#123;</span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> <span class="keyword">int</span> year, month, day;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">Date</span><span class="params">(<span class="keyword">int</span> aMonth, <span class="keyword">int</span> aDay, <span class="keyword">int</span> aYear)</span> </span>&#123;</span><br><span class="line">		month = aMonth;</span><br><span class="line">		day = aDay;</span><br><span class="line">		year = aYear;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compareTo</span><span class="params">(Date aDate)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span> (year &lt; aDate.year) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (year &gt; aDate.year) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (month &lt; aDate.month) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (month &gt; aDate.month) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (day &lt; aDate.day) <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">if</span> (day &gt; aDate.day) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>the <code>a.compareTo(b)</code> method call will return an integer, negative for $a &lt; b$, positive for $a &gt; b$, $0$ for equality. Someone prefers to use <code>return a - b</code> to cover those three occasions, however, sometimes <code>a - b</code> overflows.</li>
+<li>You can call some default <code>compareTo</code> methods when implementing your own <code>compareTo</code>.</li>
+</ol>
+<h2 id="Selection-Sort"><a href="#Selection-Sort" class="headerlink" title="Selection Sort"></a>Selection Sort</h2><p>Use a pointer to walk over the array, and split the array into two parts as well. In each iteration, select the smallest element in the right side, and exchange it with the element in the end of the left side.</p>
+<h3 id="Java-Implementation"><a href="#Java-Implementation" class="headerlink" title="Java Implementation"></a>Java Implementation</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SelectionSort</span>&lt;<span class="title">E</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">E</span>&gt;&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(E[] array)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> N = array.length;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i) &#123;</span><br><span class="line">			<span class="comment">// find the smallest one in the right side</span></span><br><span class="line">			<span class="keyword">int</span> minIndex = i;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; N; ++j)</span><br><span class="line">				<span class="keyword">if</span> (array[j].compareTo(array[minIndex]) &lt; <span class="number">0</span>) minIndex = j;</span><br><span class="line">			<span class="comment">// exchange the smallest one with &#123;@code array[i]&#125;</span></span><br><span class="line">			<span class="keyword">switch</span>(minIndex, i);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Performance-Analysis"><a href="#Performance-Analysis" class="headerlink" title="Performance Analysis"></a>Performance Analysis</h3><ol>
+<li>In total, selection sort uses $(N-1) + (N-2) + … + 1 + 0 ~ N^2/2$ compare and $N$ exchanges. So the running time is $O(N^2)$, even if the array is sorted.</li>
+<li>Selection sort is stable, since the minimum index is not updated when equal elements come up (<code>array[j].compareTo(array[minIndex]) &lt; 0</code>).</li>
+</ol>
+<h2 id="Insertion-Sort"><a href="#Insertion-Sort" class="headerlink" title="Insertion Sort"></a>Insertion Sort</h2><p>Insertion sort is almost identical to <a href="#Bubble-Sort">bubble sort</a>, except that in the inner loop, insertion sort compares elements from index $i$ down to index $0$. In the $i th$ iteration, insertion sort makes sure the first $i$ elements are sorted. Multiple exchanges are possible in one iteration.</p>
+<h3 id="Java-Implementation-1"><a href="#Java-Implementation-1" class="headerlink" title="Java Implementation"></a>Java Implementation</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">InsertionSort</span>&lt;<span class="title">E</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">E</span>&gt;&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(E[] array)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> N = array.length;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; N; ++i)</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt; <span class="number">0</span> &amp;&amp; array[j].compareTo(array[j - <span class="number">1</span>]) &lt; <span class="number">0</span>; --j)</span><br><span class="line">				<span class="keyword">switch</span>(j, j - <span class="number">1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Performance-Analysis-1"><a href="#Performance-Analysis-1" class="headerlink" title="Performance Analysis"></a>Performance Analysis</h3><ol>
+<li>For a randomly-ordered array with distinct elements, insertion sort takes $<del>N^2/4$ comparisons and $</del>N^2/4$ exchanges on average.</li>
+<li>Insertion sort is faster than bubble sort in that it can be terminated early (the <code>break;</code> statement).</li>
+<li>For best case, in which the array is totally-sorted, insertion sort makes $N-1$ compares and $0$ exchanges.</li>
+<li>For worst case, in which the array is totally-reverse-sorted, insertion sort takes $<del>N^2/2$ comparisons and $</del>N^2/2$ exchanges.</li>
+</ol>
+<h2 id="Shell-Sort"><a href="#Shell-Sort" class="headerlink" title="Shell Sort"></a>Shell Sort</h2><p>Shell Sort is a sequence of insertion sort with $h$ stride where $h$ starts from a larger number and finally decreases into 1. So which increment sequence of $h$ to use? Power of two is not a good idea, since two many repeated comparison and exchanges. $3x + 1$ is an easy-to-implement as well as good performed option.</p>
+<h3 id="Java-Implementation-with-3x-1-Gap-Sequence"><a href="#Java-Implementation-with-3x-1-Gap-Sequence" class="headerlink" title="Java Implementation with $3x+1$ Gap Sequence"></a>Java Implementation with $3x+1$ Gap Sequence</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ShellSort</span>&lt;<span class="title">E</span> <span class="keyword">implements</span> <span class="title">Comparable</span>&lt;<span class="title">E</span>&gt;&gt; </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(E[] array)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">int</span> N = array.length;</span><br><span class="line">		<span class="keyword">int</span> h = <span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span> (h &lt; N/<span class="number">3</span>) h = <span class="number">3</span> * h + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">while</span> (h &gt;= <span class="number">1</span>) &#123;</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> i = h; i &lt; N; ++i)</span><br><span class="line">				<span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &gt;= h &amp;&amp; (array[j].compareTo(array[j - h]) &lt; <span class="number">0</span>); j -=h)</span><br><span class="line">					<span class="keyword">switch</span>(j, j - h);</span><br><span class="line">			h /= <span class="number">3</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Performance-Analysis-2"><a href="#Performance-Analysis-2" class="headerlink" title="Performance Analysis"></a>Performance Analysis</h3><ol>
+<li>One crucial point in shell sort is that a $g-$sort never undo the previous $h-$sort. A proof sketch is as followed. Suppose the array $a[]$ is $g-$sorted, then we have $a[x] &lt; a[x+g]$, and $a[x+h] &lt; a[x+h+g]$. During an $h-$sort, those relationships are possible to break only when $a[x + h] &lt; a[x]$, then we have to swap $a[x]$ and $a[x+h]$. In this occasion, we have $a[x+h]&lt;a[x]&lt;a[x+g]$ before swap, which still holds the $g-$sort order after switching. As for the relationship between $a[x]$ and $a[x+h+g]$, if $a[x] &lt; a[x+g+h]$ then everything is good, otherwise, we have an inversion $a[x]&gt;a[x+g+h]$, however, since $a[x] &lt; a[x+g]$, we get $a[x+g]&gt;a[x]&gt;a[x+g+h]$, where implies a new inversion $a[x+g]&gt;a[x+g+h]$, so two inversion will annihilate when the sort algorithm compares $a[x+g]$ and $a[x+g+h]$.</li>
+<li>The worst-case number of compares used by shell sort with the $3x+1$ increment sequence is $O(N^{3/2})$. On average case, it’s $CN\lg N$.</li>
+</ol>
+<h2 id="Shuffle"><a href="#Shuffle" class="headerlink" title="Shuffle"></a>Shuffle</h2><h3 id="Why-to"><a href="#Why-to" class="headerlink" title="Why to"></a>Why to</h3><p>Some sort algorithms performs bad for reverse sorted array or partially reverse sorted array. Shuffle them to get the better performance for average case.</p>
+<h3 id="How-to"><a href="#How-to" class="headerlink" title="How to"></a>How to</h3><ol>
+<li>Shuffle sort: Generate a random number for each entry, then sort those numbers. This method produces a uniformly random permutation of the input array, given no duplicate values.</li>
+<li>Knuth Shuffle: In iteration $i$, pick a random number $r$ in $[0, i]$ uniformly, then swap $a[i]$ and $a[r]$. This method produces a uniformly random permutation of the input array in linear time.</li>
+</ol>
+<h2 id="Dequeue-and-Randomized-Queue"><a href="#Dequeue-and-Randomized-Queue" class="headerlink" title="Dequeue and Randomized Queue"></a>Dequeue and Randomized Queue</h2><p>My <a href="https://github.com/chenwpop/Coursera-Algorithms/tree/master/Deques%20and%20Randomized%20Queues" target="_blank" rel="noopener">solution</a> to the assignment <a href="https://coursera.cs.princeton.edu/algs4/assignments/queues/specification.php" target="_blank" rel="noopener">Deques and Randomized Queues</a>.</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Wahng</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>A million foe won't bend my will.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Sort/"># Sort</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/07/14/Algorithms-I-Stacks-and-Queues/">Algorithms I, Stacks and Queues</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
