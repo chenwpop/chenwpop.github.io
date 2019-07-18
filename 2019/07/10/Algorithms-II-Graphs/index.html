@@ -266,8 +266,8 @@
 <th>Representation</th>
 <th>Space</th>
 <th>Add Edge</th>
-<th>Check existence of edge between <code>v</code> and <code>w</code></th>
-<th>iterate over edges adjacent to <code>v</code></th>
+<th>Check existence of edge between $v$ and $w$</th>
+<th>iterate over edges adjacent to $v$</th>
 </tr>
 </thead>
 <tbody><tr>
@@ -351,10 +351,10 @@
 <li>Strongly-connected Component: directed bidirectional paths exist for all pairs of vertices</li>
 <li>Directed Acyclic Graph: the literal meaning. It may not be a tree since each tree node has only one parent.</li>
 </ul>
-<h2 id="Graph-Representation-1"><a href="#Graph-Representation-1" class="headerlink" title="Graph Representation"></a>Graph Representation</h2><p>Similar to undirected graphs, adjacency list is the most practical way. Notice that, in <code>adj[v]</code>, we only store the edges that go from vertex <code>v</code>.</p>
-<h2 id="Digraph-Traversal"><a href="#Digraph-Traversal" class="headerlink" title="Digraph Traversal"></a>Digraph Traversal</h2><h3 id="Reachability"><a href="#Reachability" class="headerlink" title="Reachability"></a>Reachability</h3><p>Starting from vertex <code>v</code>, find all reachable vertices along a directed path. The idea and implementation are identical to the DFS algorithm of undirected graph.</p>
+<h2 id="Graph-Representation-1"><a href="#Graph-Representation-1" class="headerlink" title="Graph Representation"></a>Graph Representation</h2><p>Similar to undirected graphs, adjacency list is the most practical way. Notice that, in $adj[v]$, we only store the edges that go from vertex $v$.</p>
+<h2 id="Digraph-Traversal"><a href="#Digraph-Traversal" class="headerlink" title="Digraph Traversal"></a>Digraph Traversal</h2><h3 id="Reachability"><a href="#Reachability" class="headerlink" title="Reachability"></a>Reachability</h3><p>Starting from vertex $v$, find all reachable vertices along a directed path. The idea and implementation are identical to the DFS algorithm of undirected graph.</p>
 <p>Typical usage of the reachability problem is to analyze the program control flow. Check whether the exit is reachable to avoid an infinite loop, find and remove unreachable code blocks to eliminate dead code. Another usage is the Garbage Collector of Java, it marks all reachable resources, and free the unmarked memory.</p>
-<h3 id="Multiple-Source-Shortest-Path"><a href="#Multiple-Source-Shortest-Path" class="headerlink" title="Multiple-Source Shortest Path"></a>Multiple-Source Shortest Path</h3><p>Given a group of vertices <code>g</code>, find the shortest path of all other vertices to any vertices in <code>g</code>. The idea is to run BFS to this graph, but at the beginning, enqueue all vertices in <code>g</code>.</p>
+<h3 id="Multiple-Source-Shortest-Path"><a href="#Multiple-Source-Shortest-Path" class="headerlink" title="Multiple-Source Shortest Path"></a>Multiple-Source Shortest Path</h3><p>Given a group of vertices $g$, find the shortest path of all other vertices to any vertices in $g$. The idea is to run BFS to this graph, but at the beginning, enqueue all vertices in $g$.</p>
 <h2 id="Topological-Sort"><a href="#Topological-Sort" class="headerlink" title="Topological Sort"></a>Topological Sort</h2><p>Given a sequence of tasks and their prerequisite relationship, find the right order to fulfill them all.</p>
 <ul>
 <li><strong>Directed Acyclic Graph</strong>:<br>The pre-exercise for this problem is to check whether a graph is a DAG, as topological sort for a cyclic graph is impossible. The basic idea is the same with undirected graph as well, to use DFS, track current path and detect potential conflicts.</li>
@@ -366,14 +366,14 @@
 <h2 id="Strongly-connected-Component"><a href="#Strongly-connected-Component" class="headerlink" title="Strongly-connected Component"></a>Strongly-connected Component</h2><p>Strongly-connected component is cyclic, so in a DAG, each vertex is a stand-alone strongly-connected component. So how to find all strongly-connected components for a normal digraph?</p>
 <h3 id="Kosaraju-Sharir-Algorithm"><a href="#Kosaraju-Sharir-Algorithm" class="headerlink" title="Kosaraju-Sharir Algorithm"></a>Kosaraju-Sharir Algorithm</h3><p>Kosaraju is a Russian professor. Once upon a time, he forgot to bring the lecture notes to class, so he developed such an easy-to-use algorithm to teach it.<br>The basic idea is,</p>
 <ol>
-<li><strong>Get the topological order on the reverse graph of <code>G</code>.</strong> The phrase <em>topological order</em> is quite confusing for me at first. Topological order for any digraph indeed exists, while the topological sort is impossible for cyclic graph. To get the topological order, simply run the <a href="#Topological-Sort">topological sort algorithm</a> on this graph.</li>
-<li><strong>Run DFS in <code>G</code>, visit the unmarked vertices in topological order.</strong><br>A simple but elegant algorithm.</li>
+<li><strong>Get the topological order on the reverse graph of $G$.</strong> The phrase <em>topological order</em> is quite confusing for me at first. Topological order for any digraph indeed exists, while the topological sort is impossible for cyclic graph. To get the topological order, simply run the <a href="#Topological-Sort">topological sort algorithm</a> on this graph.</li>
+<li><strong>Run DFS in $G$, visit the unmarked vertices in topological order.</strong><br>A simple but elegant algorithm.</li>
 </ol>
 <h2 id="WordNet"><a href="#WordNet" class="headerlink" title="WordNet"></a>WordNet</h2><p>My <a href="https://github.com/chenwpop/Coursera-AlgorithmsII/tree/master/WordNet" target="_blank" rel="noopener">solution</a> for the <a href="https://coursera.cs.princeton.edu/algs4/assignments/wordnet/specification.php" target="_blank" rel="noopener">WordNet</a>  programming assignment.<br>Some style bug on my first submission:</p>
 <ol>
 <li><p>Calls the method ‘offer()’ but ignores its return value (which is used to signal an exceptional situation).<br>The method <code>Queue::add</code> and <code>Queue::remove</code> throw exceptions in case of bad elements, while <code>Queue::offer</code> and <code>Queue::poll</code> returns special value in order to let the programmer handle the exceptions. Use <code>Queue::offer</code> and <code>Queue::poll</code> when you check the return values.<br>Most implementations of queue prohibited <code>null</code> insertion, so <code>offer(null)</code> returns false and <code>add(null)</code> throws an exception. However, LinkedList allows null elements insertion.</p>
 </li>
-<li><p>Method XXX converts String to primitive using excessive boxing<br>The method <code>Integer::valueOf</code> returns an <code>Integer</code>, while <code>Integer.parseInt</code> returns an <code>int</code>. Use the type matched method to avoid excessive auto-boxing.</p>
+<li><p>Method XXX converts String to primitive using excessive boxing<br>The method <code>Integer::valueOf</code> returns an <code>Integer</code>, while <code>Integer::parseInt</code> returns an <code>int</code>. Use the type matched method to avoid excessive auto-boxing.</p>
 </li>
 <li><p>Array initialization can be written shorter</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>[] arrayExample = &#123;a, b&#125; <span class="comment">// no need for "new int[] &#123;a, b&#125;"</span></span><br></pre></td></tr></table></figure>

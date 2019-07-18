@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="description" content="Welcome to my blog, pull up a chair by the hearth!">
+
+
+    <meta name="keywords" content="Java, Algorithms, Pusheen, movies & TV shows">
+
+
+<title>Algorithms I, Mergesort and Quicksort | Ark Pusheen</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+            <!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": {
+        preferredFont: "TeX",
+        availableFonts: ["STIX","TeX"],
+        linebreaks: { automatic:true },
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ],
+        processEscapes: true,
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } },
+        Macros: { href: "{}" }
+    },
+    messageStyle: "none"
+    });
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ark Pusheen</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" hidden class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ark Pusheen</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Algorithms I, Mergesort and Quicksort</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jul 17, 2019&nbsp;&nbsp;17:13:31</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Algorithms/">Algorithms</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>Mergesort and Quicksort are both classic sorting algorithms, as well as critical components in the modern world’s computer architecture. The former one is the algorithms in Java to sort objects, while the latter one is used to sort primitive types.</p>
+<h2 id="Mergesort-Top-down"><a href="#Mergesort-Top-down" class="headerlink" title="Mergesort, Top-down"></a>Mergesort, Top-down</h2><h3 id="Basic-Idea"><a href="#Basic-Idea" class="headerlink" title="Basic Idea"></a>Basic Idea</h3><ol>
+<li>Divide array into two halves</li>
+<li>Recursively sort each half</li>
+<li>Merge two halves</li>
+</ol>
+<h3 id="Java-Implementation"><a href="#Java-Implementation" class="headerlink" title="Java Implementation"></a>Java Implementation</h3><p>In the following code snippets, we add several helper <code>assertion</code> function. The <code>assert [Boolean Condition]</code> will throw exceptions unless the boolean condition is true. In this way, we can easily detect logic bugs.<br>Assertion can be easily enable or disable at runtime with <code>java -ea [ClassName]</code> or <code>java -da [ClassName]</code>. All assertions should be disabled in a production project.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Mergesort</span> </span>&#123;</span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * merge two continuous part [&#123;<span class="doctag">@param</span> lo&#125;, &#123;<span class="doctag">@param</span> mid&#125;], [&#123;<span class="doctag">@param</span> mid&#125;+1, &#123;<span class="doctag">@param</span> hi&#125;] of array &#123;<span class="doctag">@param</span> a&#125;.</span></span><br><span class="line"><span class="comment">  */</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">merge</span><span class="params">(Comparable[] a, Comparable[] aux, <span class="keyword">int</span> lo, <span class="keyword">int</span> mid, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isSorted</span><span class="params">(a, lo, mid)</span></span>;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isSorted</span><span class="params">(a, mid, hi)</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">     * In this algorithm, we switch the source array and auxiliary array every time,</span></span><br><span class="line"><span class="comment">     * so it's no need to do the copy explicitly.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">    for (int k = lo; k &lt;= hi; ++k) &#123;</span></span><br><span class="line"><span class="comment">        aux[k] = a[k];</span></span><br><span class="line"><span class="comment">    &#125;</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> i = lo, j = mid + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> k = lo; k &lt;= hi; ++k) &#123;</span><br><span class="line">      <span class="keyword">if</span> (i &gt; mid) aux[k] = a[j++];</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (j &gt; hi) aux[k] = a[i++];</span><br><span class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (aux[j].compareTo(aux[i]) &lt; <span class="number">0</span>) aux[k] = a[j++];</span><br><span class="line">      <span class="keyword">else</span> aux[k] = a[i++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">assert</span> <span class="title">isSorted</span><span class="params">(a, lo, hi)</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a, Comparable[] aux, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> mid = lo + (hi - lo) / <span class="number">2</span>; <span class="comment">// to avoid integer overflow</span></span><br><span class="line">    sort(aux, a, lo, mid);</span><br><span class="line">    sort(aux, a, mid + <span class="number">1</span>, hi);</span><br><span class="line">    <span class="comment">// stop the program if already sorted</span></span><br><span class="line">    <span class="keyword">if</span> (a[mid].compareTo(a[mid + <span class="number">1</span>]) &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">    merge(a, aux, lo, mid, hi);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">    aux = <span class="keyword">new</span> Comparable[a.length];</span><br><span class="line">    sort(a, aux, <span class="number">0</span>, a.length - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Complexity-Analysis"><a href="#Complexity-Analysis" class="headerlink" title="Complexity Analysis"></a>Complexity Analysis</h3><ol>
+<li><strong>Time</strong>: the time complexity of mergesort is $O(N\lg N)$. In <a href="https://www.coursera.org/learn/algorithms-part1/home/week/3" target="_blank" rel="noopener">the week 3 lecture of Coursera course <em>Algorithms I</em></a>, Prof. Sedgewick gives a detailed proof, check it if you are interested.</li>
+<li><strong>Memory</strong>: merge sort uses a size $N$ extra space for the array $aux[]$. We define a sorting algorithm as in-place if it uses $\le c\lg N$ extra memory, for example, insertion sort, selection sort, shell sort, etc.. Apparently, merge sort is not yet an in-place sorting algorithm.</li>
+</ol>
+<h2 id="Mergesort-Bottom-up"><a href="#Mergesort-Bottom-up" class="headerlink" title="Mergesort, Bottom-up"></a>Mergesort, Bottom-up</h2><h3 id="Basic-Idea-1"><a href="#Basic-Idea-1" class="headerlink" title="Basic Idea"></a>Basic Idea</h3><p>In the $i-th$ iteration,</p>
+<ol>
+<li>divide the array into subarrays of size $2^{i - 1}$</li>
+<li>merge two consecutive subarrays</li>
+<li>end the iteration until the length of the subarray is no less than array length.</li>
+</ol>
+<h3 id="Java-Implementation-1"><a href="#Java-Implementation-1" class="headerlink" title="Java Implementation"></a>Java Implementation</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">int</span> N = a.length;</span><br><span class="line">  Comparable[] aux = <span class="keyword">new</span> Comparable[N];</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">int</span> size = <span class="number">1</span>; size &lt; N; size *=<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> lo = <span class="number">0</span>; lo &lt; N - size; lo += (<span class="number">2</span>*size))</span><br><span class="line">      merge(a, aux, lo, lo + size - <span class="number">1</span>, Math.min(lo + <span class="number">2</span> * size - <span class="number">1</span>, N - <span class="number">1</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Comparator"><a href="#Comparator" class="headerlink" title="Comparator"></a>Comparator</h3><p>In the <a href>Elementary Sort</a> blog, we mentioned a Comparable interface. The Java library provides a convenient sort method <code>Arrays.sort(Object[] a)</code>, which could sort a comparable array with mergesort algorithm in the order as the <code>compareTo()</code> method defined. However, sometimes, a project requires multiple sorting order of one array, for example, to sort a group of employee in order of age, onboarding year, salary, etc., in this case, Java introduces a functional interface Comparator, which contains one method <code>public int compare(Object a, Object b)</code>, to define the comparison order. The library method <code>Arrays.sort(Object[] a, Comparator c)</code> take a comparator as the second argument, and sorts the array in the order defined in this comparator.</p>
+<p>To use the sort method <code>Arrays.sort()</code> with a customized comparator, first define a nested class which implements the Comparator interface, then override and implement the <code>compare()</code> method. The logic of <code>compare(a, b)</code> method is the same with <code>a.compareTo(b)</code> method, as a result, you can call <code>compareTo()</code> method inside <code>compare()</code> method to make your code concise.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Student</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> Comparator&lt;Student&gt; BY_NAME = <span class="keyword">new</span> ByName();</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> String name;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">ByName</span> <span class="keyword">implements</span> <span class="title">Comparator</span>&lt;<span class="title">Student</span>&gt; </span>&#123;</span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Student v, Student w)</span></span>&#123;</span><br><span class="line">      <span class="keyword">return</span> v.name.compareTo(w.name);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Quicksort"><a href="#Quicksort" class="headerlink" title="Quicksort"></a>Quicksort</h2><h3 id="Basic-Idea-2"><a href="#Basic-Idea-2" class="headerlink" title="Basic Idea"></a>Basic Idea</h3><ol>
+<li>Find an index $i$ which partite the array so that, no larger element to the left of $i$ and no smaller element to the right of $i$.</li>
+<li>Sort each partition recursively.</li>
+</ol>
+<h3 id="Java-Implementation-2"><a href="#Java-Implementation-2" class="headerlink" title="Java Implementation"></a>Java Implementation</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Quicksort</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// a[i] is the pioneer</span></span><br><span class="line">    <span class="keyword">int</span> i = lo, j = hi+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (<span class="keyword">true</span>) &#123;</span><br><span class="line">      <span class="comment">// find elements larger than the pioneer from left side</span></span><br><span class="line">      <span class="keyword">while</span> (a[lo].compareTo(a[++i]) &gt; <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> (i == hi) <span class="keyword">break</span>;</span><br><span class="line">      <span class="comment">// find elements smaller than the pioneer from right side</span></span><br><span class="line">      <span class="keyword">while</span> (a[lo].compareTo(a[--j]) &lt; <span class="number">0</span>)</span><br><span class="line">      <span class="comment">// This if-condition is redundant. Given j == lo, the while-condition breaks first</span></span><br><span class="line">        <span class="comment">// if (j == lo) break;</span></span><br><span class="line">      <span class="comment">// break if all elements are visited</span></span><br><span class="line">      <span class="keyword">if</span> (i &gt;= j) <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">switch</span>(a, i, j);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">/*</span></span><br><span class="line"><span class="comment">    switch a[lo] with a[j], instead of a[i]. If i == j, switch either a[i] or a[j] with a[lo]</span></span><br><span class="line"><span class="comment">    makes no difference. When i &gt; j, a[i] &gt; a[lo], and a[j] = a[i-1] &lt; a[lo], so we can't</span></span><br><span class="line"><span class="comment">    switch a[i] with a[lo].</span></span><br><span class="line"><span class="comment">    */</span></span><br><span class="line">    <span class="keyword">switch</span>(a, lo, j);</span><br><span class="line">    <span class="keyword">return</span> j;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// shuffle the array for performance guarantee</span></span><br><span class="line">    StdRandom.shuffle(a);</span><br><span class="line">    sort(a, <span class="number">0</span>, a.length - <span class="number">1</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span></span><br><span class="line"><span class="comment">   * sort the array &#123;<span class="doctag">@param</span> a[]&#125; between range [&#123;<span class="doctag">@param</span> lo&#125;, &#123;<span class="doctag">@param</span> hi&#125;] (inclusively).</span></span><br><span class="line"><span class="comment">   */</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line">    <span class="keyword">int</span> j = partition(a, lo, hi);</span><br><span class="line">    sort(a, lo, j-<span class="number">1</span>);</span><br><span class="line">    sort(a, j+<span class="number">1</span>, hi);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Complexity-Analysis-1"><a href="#Complexity-Analysis-1" class="headerlink" title="Complexity Analysis"></a>Complexity Analysis</h3><ol>
+<li><strong>Time</strong>: On average case, quicksort performs in the order of $O(N\lg N)$ as well. Again, check the proof in <a href="https://www.coursera.org/learn/algorithms-part1/home/week/3" target="_blank" rel="noopener">lecture</a> if you are interested. When the array is sorted or reverse sorted, the time complexity becomes quadratic since the times of comparison is $N + (N-1) + (N-2) + … + 1 ~N^2$ in total. Randomly shuffle the array before starting to sort helps avoid the worst case.</li>
+<li><strong>Memory</strong>: quicksort is an in-place sorting algorithm. The partition method occupies constant extra space, while the recursion depth is logarithmic.</li>
+<li>In <strong>practice</strong>, quicksort is faster than mergesort, as it avoids the initialization of tiny subarrays. However, quicksort is not stable, that’s why Java use merge sort to handle object array.</li>
+<li><strong>Duplicates</strong>: the traditional quicksort algorithm performs badly on duplicate elements, in the worst case, if all elements are the same, quicksort still goes through the whole process which takes $O(N^2)$. One solution is the Dijkstra 3-way quicksort.<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">sort</span><span class="params">(Comparable[] a, <span class="keyword">int</span> lo, <span class="keyword">int</span> hi)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (hi &lt;= lo) <span class="keyword">return</span>;</span><br><span class="line">  <span class="keyword">int</span> lt = lo, gt = hi;</span><br><span class="line">  Comparable v = a[lo];</span><br><span class="line">  <span class="keyword">int</span> i = lo;</span><br><span class="line">  <span class="keyword">while</span> (i &lt;= gt) &#123;</span><br><span class="line">    <span class="keyword">int</span> cmp = a[i].compareTo(v);</span><br><span class="line">    <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>) <span class="keyword">switch</span>(a, lt++, i++);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>) <span class="keyword">switch</span>(a, i, gt--);</span><br><span class="line">    <span class="keyword">else</span> i++;</span><br><span class="line">  &#125;</span><br><span class="line">  sort(a, lo, lt - <span class="number">1</span>);</span><br><span class="line">  sort(a, gt + <span class="number">1</span>, hi);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<h2 id="Stable"><a href="#Stable" class="headerlink" title="Stable"></a>Stable</h2><p>A sorting algorithm is stable if it keeps the order of equal elements after sorting. All algorithm based on <strong>long-distance switch</strong> is not stable. For example, suppose $i &lt; j$, you switch $a[i]$ and $a[j]$ under certain condition, chances are that some elements equal to $a[i]$ lies in the range of $[i+1, j-1]$, so the stability breaks after the exchange. Since object elements in Java are not identical in most cases, the Java library uses mergesort to keep the stability of an array although it’s slightly slower than quicksort.</p>
+<h2 id="Sorting-Summary"><a href="#Sorting-Summary" class="headerlink" title="Sorting Summary"></a>Sorting Summary</h2><table>
+<thead>
+<tr>
+<th>Algorithms</th>
+<th align="center">in-place?</th>
+<th>stable?</th>
+<th>worst</th>
+<th>average</th>
+<th>best</th>
+<th align="center">remarks</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>selection</td>
+<td align="center">Yes</td>
+<td></td>
+<td>$N^2/2$</td>
+<td>$N^2/2$</td>
+<td>$N^2/2$</td>
+<td align="center">N exchanges</td>
+</tr>
+<tr>
+<td>insertion</td>
+<td align="center">Yes</td>
+<td>Yes</td>
+<td>$N^2/2$</td>
+<td>$N^2/4$</td>
+<td>N</td>
+<td align="center">works well for small N or partially sorted array</td>
+</tr>
+<tr>
+<td>shell</td>
+<td align="center">Yes</td>
+<td></td>
+<td>unknown</td>
+<td>unknown</td>
+<td>N</td>
+<td align="center">performance depends on the increment sequence</td>
+</tr>
+<tr>
+<td>merge</td>
+<td align="center"></td>
+<td>Yes</td>
+<td>$N\lg N$</td>
+<td>$N\lg N$</td>
+<td>$N\lg N$</td>
+<td align="center">standard object sorting algorithm in Java</td>
+</tr>
+<tr>
+<td>quick</td>
+<td align="center">Yes</td>
+<td></td>
+<td>$N^2/2$</td>
+<td>$2N\lg N$</td>
+<td>$N\lg N$</td>
+<td align="center">shuffle the array to guarantee good performance in practice</td>
+</tr>
+<tr>
+<td>3-way quicksort</td>
+<td align="center">Yes</td>
+<td></td>
+<td>$N\lg N$</td>
+<td>$N\lg N$</td>
+<td>N</td>
+<td align="center">solve the duplicate keys problem</td>
+</tr>
+</tbody></table>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Wahng</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>A million foe won't bend my will.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Sort/"># Sort</a>
+                    
+                        <a href="/tags/Assertion/"># Assertion</a>
+                    
+                        <a href="/tags/Comparator/"># Comparator</a>
+                    
+                        <a href="/tags/Stable/"># Stable</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/07/15/Algorithms-I-Elementary-Sorts/">Algorithms I, Elementary Sorts</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

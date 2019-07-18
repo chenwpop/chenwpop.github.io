@@ -607,8 +607,8 @@ header label {
 .post-wrap {
   position: relative;
   width: 100%;
-  max-width: 780px;
-  margin: 0 auto;
+  max-width: 800px;
+  margin: 0.5rem 10rem 0 5rem;
   padding-top: 2rem;
 }
 .post-wrap .archive-item {
@@ -757,7 +757,7 @@ header label {
   padding-bottom: 0.3em;
 }
 .post-content h1::before {
-  content: "#";
+  content: "|";
   margin-right: 5px;
   color: #2d96bd;
 }
@@ -765,7 +765,7 @@ header label {
   color: #eee;
 }
 .post-content h2::before {
-  content: "#";
+  content: "†";
   margin-right: 5px;
   color: #2d96bd;
 }
@@ -773,7 +773,7 @@ header label {
   color: #eee;
 }
 .post-content h3::before {
-  content: "|";
+  content: "∆";
   margin-right: 5px;
   color: #2d96bd;
 }
@@ -848,7 +848,7 @@ header label {
   margin: 0;
 }
 .post-content ul {
-  padding-left: 2em;
+  padding-left: 1em;
 }
 .post-content table {
   max-width: 100%;
@@ -892,7 +892,7 @@ header label {
   font-size: 1rem;
   display: block;
   margin: 1em 0;
-  padding: 1em 1.2em 1em 1.2em;
+  padding: 0.3em 0.8em 0.3em 0.8em;
   position: relative;
   color: rgba(52,73,94,0.8);
   background-color: #e9f5fa;
@@ -1034,7 +1034,7 @@ header label {
   position: fixed;
   top: 95px;
   right: 2em;
-  width: 15rem;
+  width: 10rem;
   font-size: 0.75rem;
 }
 .post-toc .tocbot-list {
