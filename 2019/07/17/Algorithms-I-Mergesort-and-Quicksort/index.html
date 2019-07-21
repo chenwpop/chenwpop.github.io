@@ -276,7 +276,7 @@
 
 </li>
 </ol>
-<h2 id="Stable"><a href="#Stable" class="headerlink" title="Stable"></a>Stable</h2><p>A sorting algorithm is stable if it keeps the order of equal elements after sorting. All algorithm based on <strong>long-distance switch</strong> is not stable. For example, suppose $i &lt; j$, you switch $a[i]$ and $a[j]$ under certain condition, chances are that some elements equal to $a[i]$ lies in the range of $[i+1, j-1]$, so the stability breaks after the exchange. Since object elements in Java are not identical in most cases, the Java library uses mergesort to keep the stability of an array although it’s slightly slower than quicksort.</p>
+<h2 id="Stable"><a href="#Stable" class="headerlink" title="Stable"></a>Stable</h2><p>A sorting algorithm is stable if it keeps the order of equal elements after sorting. All algorithm based on <strong>long-distance switch</strong> is not stable. For example, suppose $i &lt; j$, you are going to switch $a[i]$ and $a[j]$ under certain condition, chances are that some elements equal to $a[i]$ lies in the range of $[i+1, j-1]$, so the stability breaks after the exchange. Since object elements in Java are not identical in most cases, the Java library uses mergesort to keep the stability of an array although it’s slightly slower than quicksort.</p>
 <h2 id="Sorting-Summary"><a href="#Sorting-Summary" class="headerlink" title="Sorting Summary"></a>Sorting Summary</h2><table>
 <thead>
 <tr>
@@ -344,6 +344,7 @@
 <td align="center">solve the duplicate keys problem</td>
 </tr>
 </tbody></table>
+<h2 id="Collinear-Points"><a href="#Collinear-Points" class="headerlink" title="Collinear Points"></a>Collinear Points</h2><p>My <a href="https://github.com/chenwpop/Coursera-Algorithms/tree/master/Collinear%20Points" target="_blank" rel="noopener">solution</a> to the assignment <a href="https://coursera.cs.princeton.edu/algs4/assignments/collinear/specification.php" target="_blank" rel="noopener">Collinear Points</a>. This solution got 98 points when I submitted it, the only flaw is that, given an $n \times 1$ grid, I called the method <code>compareTo()</code> too many times when sorting the points to find the line segment ends. I tried to rewrite my algorithm, however, since symbol table is prohibited in this course by week 3, so I couldn’t find the tricky solution to make it 100 points. If you get any idea, feel free to reach out to me, any comments are welcome.</p>
 
         </div>
 
@@ -395,6 +396,8 @@
             </div>
         </section>
         <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2019/07/20/Algorithms-I-Priority-Queues/">Algorithms I, Priority Queues and Symbol Tables</a>
             
             
             <a class="next" rel="next" href="/2019/07/15/Algorithms-I-Elementary-Sorts/">Algorithms I, Elementary Sorts</a>
