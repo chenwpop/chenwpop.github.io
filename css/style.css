@@ -608,7 +608,7 @@ header label {
   position: relative;
   width: 100%;
   max-width: 800px;
-  margin: auto;
+  margin: 0.5rem 10% 0 10%;
   padding-top: 2rem;
 }
 .post-wrap .archive-item {
