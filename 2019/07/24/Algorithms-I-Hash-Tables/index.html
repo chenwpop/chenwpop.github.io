@@ -254,21 +254,21 @@
 <li>If a field is a reference type, use its <code>hashCode()</code>, you might have to implement it recursively.</li>
 <li>If a field is an array, apply to each entry.</li>
 </ol>
-<h2 id="Hash-Function"><a href="#Hash-Function" class="headerlink" title="Hash Function"></a>Hash Function</h2><p>In Java, hash code is an integer between $-2^{31}~ 2^{31}-1$, while hash function returns an integer between 0 and $M-1$, which serves as the index of an array of length $M$. The intuitional idea is to scramble the hash codes uniformly to produce the indices, it’s easy to compute, and each table index is almost equally likely for each hash code.</p>
+<h2 id="Hash-Function"><a href="#Hash-Function" class="headerlink" title="Hash Function"></a>Hash Function</h2><p>In Java, hash code is an integer between $-2^{31}$ ~ $2^{31}-1$, while hash function returns an integer between 0 and $M-1$, which serves as the index of an array of length $M$. The intuitional idea is to scramble the hash codes uniformly to produce the indices, it’s easy to compute, and each table index is almost equally likely for each hash code.</p>
 <blockquote>
 <p>Some proposition of the uniform balls-to-bins problem</p>
 <ol>
-<li>Birthday Problem: expect two balls in the same bin after $~ \sqrt{\pi M/2}$</li>
-<li>Coupon Collector: expect every bin has $\ge 1$ balls after $~ M\ln M$ tosses</li>
+<li>Birthday Problem: expect two balls in the same bin after ~ $\sqrt{\pi M/2}$</li>
+<li>Coupon Collector: expect every bin has $\ge 1$ balls after ~ $M\ln M$ tosses</li>
 <li>Load Balancing: after $M$ tosses, expect most loaded bin has $\Theta(\lg M/\lg \lg M )$ balls</li>
 </ol>
 </blockquote>
-<p>The most common way is to take the mod of key’s hash code. This method is bug-prone given the wide range ($-2^{31}~ 2^{31} - 1$) of hash code.</p>
+<p>The most common way is to take the mod of key’s hash code. This method is bug-prone given the wide range ($-2^{31}$ ~ $2^{31} - 1$) of hash code.</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// The library implementation</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">int</span> <span class="title">hash</span><span class="params">(Key key)</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (key.hashCode() &amp; <span class="number">0x7fffffff</span>) % M;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h2 id="Data-Structure-Implementation"><a href="#Data-Structure-Implementation" class="headerlink" title="Data Structure Implementation"></a>Data Structure Implementation</h2><h3 id="Separate-Chaining"><a href="#Separate-Chaining" class="headerlink" title="Separate Chaining"></a>Separate Chaining</h3><p>This implementation uses an array of list to store keys. When inserting a element with hash function $i$, put it in the front of the $ith$ list (if not already included). When search keys in it, first get the value of hash function, then go through the corresponding list for a matched key.</p>
-<p>Under uniform hashing assumption, probability that the number of keys in a list is within a constant factor of $N/M$ is extremely close to 1. As a result, if M is too larger, too many chains are empty. If M is too small, chains are too long. In practice, we choose $M ~ N/5$, to get a constant-time operations.</p>
-<h3 id="Linear-Probing"><a href="#Linear-Probing" class="headerlink" title="Linear Probing"></a>Linear Probing</h3><p>When we are abundant of space (in other words, $M&gt;N$), the linear probing method performs better. The basic data structure is the same, an array of length $M$. However, for each slot, we don’t have to create a list since no hash collision given $M&gt;N$. When put a key in the $ith$ list, if it’s not occupied, put it right here, otherwise, move forward to $i+1, i+2,…$ slot, until an empty one found. In practice, we usually choose $M ~ \frac{1}{2}N$ to maximize performance.</p>
+<p>Under uniform hashing assumption, probability that the number of keys in a list is within a constant factor of $N/M$ is extremely close to 1. As a result, if M is too larger, too many chains are empty. If M is too small, chains are too long. In practice, we choose $M$ ~ $N/5$, to get a constant-time operations.</p>
+<h3 id="Linear-Probing"><a href="#Linear-Probing" class="headerlink" title="Linear Probing"></a>Linear Probing</h3><p>When we are abundant of space (in other words, $M&gt;N$), the linear probing method performs better. The basic data structure is the same, an array of length $M$. However, for each slot, we don’t have to create a list since no hash collision given $M&gt;N$. When put a key in the $ith$ list, if it’s not occupied, put it right here, otherwise, move forward to $i+1, i+2,…$ slot, until an empty one found. In practice, we usually choose $M$ ~ $\frac{1}{2}N$ to maximize performance.</p>
 <p>Compared with separate chaining implementation, linear probing make good use of space. However, Separate chaining performs better when handle the clustering problem arise from poorly-designed hash function. Besides the above implementations, many other versions have been studied, such as two-probing hashing, double hashing, Cuckoo hashing, etc. Dig up more details if you are interested.</p>
 
         </div>
