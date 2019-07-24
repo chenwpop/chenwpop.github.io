@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="description" content="Welcome to my blog, pull up a chair by the hearth!">
+
+
+    <meta name="keywords" content="Java, Algorithms, Pusheen, movies & TV shows">
+
+
+<title>Algorithms I, Balanced Search Trees and Geometric Search | Ark Pusheen</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+</head>
+<body>
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Ark Pusheen</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" hidden class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Ark Pusheen</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+
+        <div class="main">
+            <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Algorithms I, Balanced Search Trees and Geometric Search</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Chen Wahng</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">Jul 20, 2019&nbsp;&nbsp;20:15:44</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categories/Algorithms/">Algorithms</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="Balanced-Search-Trees"><a href="#Balanced-Search-Trees" class="headerlink" title="Balanced Search Trees"></a>Balanced Search Trees</h2><h3 id="2-3-Search-Trees"><a href="#2-3-Search-Trees" class="headerlink" title="2-3 Search Trees"></a>2-3 Search Trees</h3><h4 id="Properties"><a href="#Properties" class="headerlink" title="Properties"></a>Properties</h4><ul>
+<li><strong>Allow 1 or 2 keys per node</strong>: A node with one key is called a 2-node, as it has two children, while a node with two keys is called a 3-node, as it has three children.</li>
+<li><strong>Symmetric order</strong>: In order traversal the tree yields keys in ascending order.</li>
+<li><strong>Perfect balance</strong>: the bottom level is always full.</li>
+</ul>
+<h4 id="Operations"><a href="#Operations" class="headerlink" title="Operations"></a>Operations</h4><ul>
+<li>Search: this operation for a 2-3 tree is almost identical to a binary search tree. Compare the key with current node’s key(s), if less, go left, if greater, go right, otherwise, target key found. If a null node reached, it means no such key in current tree.</li>
+<li>Insert:  Just as a binary search tree, a new node will always be inserted into the bottom level. First, search the prompt node for target key, insert it to the node, then check the necessity of promotion. If the key is inserted to a 2-node, everything is good, otherwise, promote the middle key to the parent node, then split the remaining two keys into two 2-nodes. Repeat the steps for parent node, until the correct order of 2-3 tree is restored.</li>
+</ul>
+<p>A 2-3 tree’s height is always between $\lg_3 N$ (all 3-nodes) and $\lg_2 N$ (all 2-nodes). In the <a href="http://www.arkpusheen.com/2019/07/20/Algorithms-I-Priority-Queues/" target="_blank" rel="noopener">Priority Queues and Symbol Tables</a> blog, we talked about several implementations of symbol tables, among them the best one is the binary search tree, which reaches to logarithmic complexity on average cases. However, a BST only support linear search, insert, and delete operations in the worst case, given a stream of sorted keys. Fortunately, 2-3 tree overcomes the drawback, as its height is always logarithmic with the total number of nodes.</p>
+<p>All the above operations are implementable, although the code is not easy to follow. In practice, we use red-black BSTs to represent 2-3 tree as a BST and get the same performance as well.</p>
+<h3 id="Left-Leaning-Red-Black-BSTs"><a href="#Left-Leaning-Red-Black-BSTs" class="headerlink" title="Left-Leaning Red-Black BSTs"></a>Left-Leaning Red-Black BSTs</h3><h4 id="Properties-1"><a href="#Properties-1" class="headerlink" title="Properties"></a>Properties</h4><ul>
+<li><strong>A BST Representation of 2-3 Trees</strong>: Left-leaning red-black trees split all 3-nodes into 2 normal nodes, and use a red left link to glue them.</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--a 3-node in 2-3 tree, [ ] means a subtree, ( ) means a node--&gt;</span><br><span class="line">                          (a, b)</span><br><span class="line">                         /   |  \</span><br><span class="line">                        /    |   \</span><br><span class="line">                      [&lt;a] [a,b] [&gt;b]</span><br><span class="line"></span><br><span class="line">&lt;!--red-black tree representation--&gt;</span><br><span class="line">                           (b)</span><br><span class="line">                          /   \</span><br><span class="line">                        (a)   [&gt;b]</span><br><span class="line">                       /   \</span><br><span class="line">                    [&lt;a]   [a,b]</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>1 to 1 correspondence between a 2-3 tree and a red-black tree.</li>
+<li>Every path from root to <code>null</code> node has the same number of black links.</li>
+<li>No node has two red links connected to it.</li>
+</ul>
+<h4 id="Operations-1"><a href="#Operations-1" class="headerlink" title="Operations"></a>Operations</h4><ul>
+<li><strong>Search</strong>: identical to a normal BST (just ignore color). As a result, many other operations based on search are identical as well, such as <code>floor(), iteration()</code>, etc..</li>
+<li><strong>Left Rotation</strong>: This is a fundamental operation which orients a temporarily right-leaning link to lean left.</li>
+<li><strong>Right Rotation</strong>: This is a fundamental operation which orients a left-leaning link to temporarily lean right.</li>
+<li><strong>Recolor and split</strong>: Recall that when inserting a new node to 2-3 tree, problem may arise that a 4-node is generated through inserting a new key into a 3-node. In 2-3 tree, we promote the middle key into parent node then split the remaining 2 keys into 2 nodes, while in red-black trees, instead of promoting the middle key, we directly split a 4-node into 3 nodes, as the middle key would be split eventually after promotion. This operation will generate 2 red links, from left and right nodes respectively, and both corresponding to the middle node. So we have to rearrange the link color.</li>
+<li><strong>Insertion</strong>: insertion in a red-black tree seems to be more complicated than a regular BST. First, do the standard BST search, insert the new node and color the link red. Next, if the parent node is a 2-node, and the new red link is right-leaning, rotate it left; if it’s a 3-node, check the leaning of it, and do necessary rotation, then rotate to balance the new 4-node (when 2 red links are connected to one node), flip colors to push up the red link, Repeat the above operations for all nodes up to root, to restore the prompt order and link color.</li>
+</ul>
+<p>The above insertion operation simulates the insertion of 2-3 trees. A red-black tree keeps black link balanced, that is to say, the number of black links from the root to any <code>null</code> node (which is the height of the corresponding 2-3 tree) remains the same after any random operations, even a stream of ordered keys couldn’t break such a balance. As we mentioned before, the height of a 2-3 tree is at most $\lg N$, so the number of links from root to <code>null</code> node can not exceed this number. Besides, each node in a red-black tree can only have one red link, so the height of a red-black tree on the worst case is $2\lg N$, this ensures logarithmic for all common operations, including what we have discussed before, <code>floor(), rank(), insert(), delete(), etc.</code>.</p>
+<h4 id="Java-Implementation"><a href="#Java-Implementation" class="headerlink" title="Java Implementation"></a>Java Implementation</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RBBST</span>&lt;<span class="title">Key</span> <span class="keyword">extends</span> <span class="title">Comparable</span>&lt;<span class="title">Key</span>&gt;, <span class="title">Value</span>&gt; </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> RED = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">boolean</span> BLACK = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        Key key;</span><br><span class="line">        Value val;</span><br><span class="line">        Node le, ri;</span><br><span class="line">        <span class="keyword">boolean</span> color; <span class="comment">// color of its parent link</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(Key aKey, Value aVal, <span class="keyword">boolean</span> aColor)</span> </span>&#123;</span><br><span class="line">            key = aKey; val = aVal; color = aColor;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isRed</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> node.color = RED;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Node <span class="title">rotateLeft</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// assert isRed(node.right);</span></span><br><span class="line">        Node temp = node.right;</span><br><span class="line">        node.right = temp.left;</span><br><span class="line">        temp.left = node;</span><br><span class="line">        temp.color = node.color;</span><br><span class="line">        node.color = RED;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> Node <span class="title">rotateRight</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// assert isRed(node.left);</span></span><br><span class="line">        Node temp = node.left;</span><br><span class="line">        node.left = temp.right;</span><br><span class="line">        temp.right = node;</span><br><span class="line">        temp.color = node.color;</span><br><span class="line">        node.color = RED;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">recolor</span><span class="params">(Node node)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// assert !isRed(node);</span></span><br><span class="line">        <span class="comment">// assert isRed(node.left);</span></span><br><span class="line">        <span class="comment">// assert isRed(node.right);</span></span><br><span class="line">        node.color = RED;</span><br><span class="line">        node.left.color = BLACK;</span><br><span class="line">        node.right.color = BLACK;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Node <span class="title">put</span><span class="params">(Key key, Value val, Node node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (node == <span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">new</span> Node(key, val, RED);</span><br><span class="line">        <span class="keyword">int</span> order = node.key.compareTo(key);</span><br><span class="line">        <span class="keyword">if</span> (order == <span class="number">0</span>) node.val = val;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (order &lt; <span class="number">0</span>) node.left = put(key, val, node.left);</span><br><span class="line">        <span class="keyword">else</span> node.right = put(key, val, node.right);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (isRed(node.right) &amp;&amp; !isRed(node.left)) node = rotateLeft(node);</span><br><span class="line">        <span class="keyword">if</span> (isRed(node.left) &amp;&amp; isRed(node.left.left)) node = rotateRight(node);</span><br><span class="line">        <span class="keyword">if</span> (isRed(node.left) &amp;&amp; isRed(node.right)) recolor(node);</span><br><span class="line">        <span class="keyword">return</span> node;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Other operations such as floor, rank, size, delete are identical to regular BST*/</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Geometric-Search"><a href="#Geometric-Search" class="headerlink" title="Geometric Search"></a>Geometric Search</h2><p>To simplify the problem, assume that all $x$-coordinates and $y$-coordinates of all geometric primitives are distinct.</p>
+<h3 id="1d-Range-Search"><a href="#1d-Range-Search" class="headerlink" title="1d Range Search"></a>1d Range Search</h3><p>Two main tasks for general 1d range search</p>
+<ol>
+<li><strong>Range Search</strong>: get all keys in $[k_1, k_2]$</li>
+<li><strong>Range Count</strong>: count the number of keys in $[k_1, k_2]$</li>
+</ol>
+<p>Range count can be easily implemented with the <code>rank()</code> operation, take the result of $rank(k_2) - rank(k_1)$, and add one if $k_2$ is included in tree. Range search requires to iterate over the tree, to find all included nodes, so it takes $O(\lg N + R)$, where $N$ is the number of nodes, and $R$ is the number of covered nodes.</p>
+<h3 id="Orthogonal-Line-Segment-Intersection"><a href="#Orthogonal-Line-Segment-Intersection" class="headerlink" title="Orthogonal Line Segment Intersection"></a>Orthogonal Line Segment Intersection</h3><p>The basic idea is,</p>
+<ol>
+<li>Sweep a vertical line from left to right, to find events which are defined by $x$-coordinates.</li>
+<li>If meet a left endpoint of a horizontal segment, insert the $y$-coordinates into the BST.</li>
+<li>If meet a right endpoint of a horizontal, delete the $y$-coordinates from the BST.</li>
+<li>If meet a vertical segment, do range search for its $y$-coordinate inside the BST.</li>
+</ol>
+<p>Through the sweeping line way, we flatten the 2d intersection problem into a 1d range search problem.</p>
+<h3 id="2d-Orthogonal-Range-Search"><a href="#2d-Orthogonal-Range-Search" class="headerlink" title="2d Orthogonal Range Search"></a>2d Orthogonal Range Search</h3><p>A 2d orthogonal range search algorithm aims to find the relationship between 2d points and 2d axis-aligned rectangles in the same plane.</p>
+<ol>
+<li><strong>Range Search</strong>: find all keys (representing 2d points) that lie in a 2d range (representing rectangle).</li>
+<li><strong>Range Count</strong>: get the number of keys that lie in a 2d range.</li>
+</ol>
+<p>One intuitional method is to simulate a 2d hash, where the hash code of each point is the coordinates, and the hash function is modular $M$. Specifically speaking, first, divide the 2d space into $M\times M$ grid of squares, then use a list to store points inside each square. When query a 2d range, only search the lists corresponding to intersecting squares. To check whether a 2d range intersects with a square is easy, just check whether the endpoints are inside the square. This method illustrate the trade-off between time ($O(1 + N/M^2)$) and space ($O(M^2+N)$) on average cases, in general, we choose $M = \sqrt N$ to get a compromise. However, in practical geometric data, clustering is a common phenomenon that breaks the good performance of the above method, just as too much collision slows a hash data structure. Instead, we construct a 2d partition tree to cache a geometric space, so we could make use of tree operations to speed up geometric queries.</p>
+<h4 id="2d-Tree"><a href="#2d-Tree" class="headerlink" title="2d Tree"></a>2d Tree</h4><p>A 2d tree recursively partitions a plane into 2 parts. Each node in such a tree represents a 2d point. Starting from level 0, we take the $x$-coordinates as keys for even level, and $y$-coordinates as keys for odd level. All nodes with a smaller key lie in the left subtree, and vice versa.</p>
+<blockquote>
+<p>2d Orthogonal Range Search</p>
+</blockquote>
+<p>As described above, a subtree in a 2d tree covers a sub-plane. When solving the 2d orthogonal range search problem, we navigate through the 2d tree according to whether the query rectangle intersects with a sub-plane. If they are intersected, check the corresponding subtree, otherwise skip it. Notice that a rectangle could intersect with both the left subtree as well as the right one, in this case, we need to check both of them.</p>
+<p>In typical case, it takes $O(R + \lg N)$ to query a rectangle in the range search problem. The time complexity in the worst case becomes $O(R + \sqrt N)$ given a balanced tree, which depends on the construction method, in other words, it’s totally under control and implementable.</p>
+<blockquote>
+<p>Nearest Neighbor Search</p>
+</blockquote>
+<p>Starting from the root node, compute the distance between current point and the target point. Then compute the nearest distance from a sub-plane to the target point, to see if a smaller distance is possible. If it is, search the corresponding subtree. Typical case takes $O(\lg N)$, while the worst case (when each node has to be searched and checked) takes linear time $O(N)$.</p>
+<h4 id="Kd-Tree"><a href="#Kd-Tree" class="headerlink" title="Kd-Tree"></a>Kd-Tree</h4><p>Kd-tree is similar to 2d tree, it recursively partitions $k$-dimensional space into 2 half-spaces. In the $mod(i)$ level of Kd-tree, we take the $ith$ dimension as the key, all points with a less $ith$ coordinates lie in the left subtree, while points with larger one lie in the right subtree. This is a widely used method to process high dimensional geometric data.</p>
+<h3 id="Kd-Trees"><a href="#Kd-Trees" class="headerlink" title="Kd-Trees"></a>Kd-Trees</h3><p>My <a href>solution</a> to the assignment <a href="https://coursera.cs.princeton.edu/algs4/assignments/kdtree/specification.php" target="_blank" rel="noopener">Kd-Trees</a>.</p>
+
+        </div>
+
+				<div id="disqus_thread"></div>
+				<script>
+
+				/**
+				*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+				*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+				/*
+				var disqus_config = function () {
+				this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+				this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+				};
+				*/
+				(function() { // DON'T EDIT BELOW THIS LINE
+				var d = document, s = d.createElement('script');
+				s.src = 'https://arkpusheen.disqus.com/embed.js';
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+				})();
+				</script>
+				<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+        
+            <section class="post-copyright">
+                
+                    <p class="copyright-item">
+                        <span>Author:</span>
+                        <span>Chen Wahng</span>
+                    </p>
+                
+                
+                
+                    <p class="copyright-item">
+                        <span>License:</span>
+                        <span>Copyright (c) 2019 <a href="http://creativecommons.org/licenses/by-nc/4.0/">CC-BY-NC-4.0</a> LICENSE</span>
+                    </p>
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>A million foe won't bend my will.</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tags/Geometric-Search/"># Geometric Search</a>
+                    
+                        <a href="/tags/Search/"># Search</a>
+                    
+                        <a href="/tags/Balanced-Search-Trees/"># Balanced Search Trees</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2019/07/20/Algorithms-I-Priority-Queues-and-Symbol-Tables/">Algorithms I, Priority Queues and Symbol Tables</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+        </div>
+        <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Chen Wahng | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>
